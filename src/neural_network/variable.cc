@@ -84,7 +84,7 @@ void Variable::backward()
     std::unordered_set<Variable *> visited;
     std::deque<Variable *> stack;
     topological_sort(visited, stack);
-    for (auto iter = stack.rbegin(); iter != stack.rend(); ++iter)
+    for (auto iter = stack.begin(); iter != stack.end(); ++iter)
     {
         (*iter)->_backward();
     }
