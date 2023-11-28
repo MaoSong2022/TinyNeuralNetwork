@@ -72,7 +72,7 @@ void Variable::topological_sort(std::unordered_set<Variable *> &visited,
         return;
     }
     visited.insert(this);
-    for (auto &child : _children)
+    for (Variable *child : _children)
     {
         child->topological_sort(visited, stack);
     }
