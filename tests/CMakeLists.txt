@@ -1,5 +1,7 @@
 if(ENABLE_TESTING)
-    set(TEST_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/test_print_hello_world.cc" "${CMAKE_CURRENT_SOURCE_DIR}/test_factorial.cc")
+    set(TEST_SOURCES
+        "${CMAKE_CURRENT_SOURCE_DIR}/test_print_hello_world.cc"
+        "${CMAKE_CURRENT_SOURCE_DIR}/test_variable.cc")
     set(TEST_HEADERS "")
 
     add_executable(${UNIT_TEST_NAME} ${TEST_SOURCES} ${TEST_HEADERS})
