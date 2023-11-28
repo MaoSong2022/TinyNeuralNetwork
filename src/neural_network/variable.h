@@ -10,7 +10,7 @@ class Variable
 private:
     double _value;
     double _gradient;
-    std::function<void()> _backward;
+    std::function<void()> _backward = [] {};
     std::unordered_set<Variable *> _children;
 
     void topological_sort(std::unordered_set<Variable *> &visited,
