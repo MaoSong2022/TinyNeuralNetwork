@@ -2,6 +2,7 @@
 #include <catch2/catch.hpp>
 
 #include "my_lib.h"
+#include "my_lib2.h"
 
 TEST_CASE("Factorials are computed", "[factorial]")
 {

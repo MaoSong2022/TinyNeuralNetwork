@@ -10,6 +10,14 @@ target_link_libraries(
             spdlog::spdlog
             cxxopts::cxxopts)
 
+target_link_libraries(
+    ${EXECUTABLE_NAME}
+    PRIVATE ${NEURAL_NETWORK}
+            nlohmann_json::nlohmann_json
+            fmt::fmt
+            spdlog::spdlog
+            cxxopts::cxxopts)
+
 if(${ENABLE_WARNINGS})
     target_set_warnings(
         TARGET
