@@ -11,12 +11,16 @@
 
 #include "config.hpp"
 #include "my_lib.h"
+#include "variable.h"
 
 using json = nlohmann::json;
 namespace fs = std::filesystem;
 
 int main(int argc, char **argv)
 {
+    Variable a(2.0);
+    Variable b(3.0);
+    Variable c = a + b;
     std::cout << "JSON: " << NLOHMANN_JSON_VERSION_MAJOR << "."
               << NLOHMANN_JSON_VERSION_MINOR << "."
               << NLOHMANN_JSON_VERSION_PATCH << '\n';
