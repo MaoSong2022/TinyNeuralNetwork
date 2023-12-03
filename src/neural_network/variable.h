@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <iostream>
 #include <stack>
 #include <unordered_set>
 
@@ -56,6 +57,12 @@ public:
 
     void backward();
 
+    std::ostream &operator<<(std::ostream &os)
+    {
+        return os << "Value: " << _value << " Gradient: " << _gradient;
+    }
+
+public:
     Variable operator-();
 
     Variable operator+(Variable &other);
