@@ -52,8 +52,20 @@ public:
 
     void backward();
 
+    Variable operator-();
+
     Variable operator+(Variable &other);
     Variable operator-(Variable &other);
     Variable operator*(Variable &other);
     Variable operator/(Variable &other);
+
+    Variable operator+(double left);
+    Variable operator-(double left);
+    Variable operator*(double left);
+    Variable operator/(double left);
+
+    friend Variable operator+(double left, Variable &right);
+    friend Variable operator-(double left, Variable &right);
+    friend Variable operator*(double left, Variable &right);
+    friend Variable operator/(double left, Variable &right);
 };

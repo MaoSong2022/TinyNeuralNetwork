@@ -3,6 +3,15 @@
 
 #include <stdexcept>
 
+Variable Variable::operator-()
+{
+    Variable result;
+    result._value = -this->_value;
+    result._children.insert(this);
+    result._backward = [&]() { this->_gradient += -result._gradient; };
+    return result;
+}
+
 Variable Variable::operator+(Variable &other)
 {
     Variable result;
@@ -88,4 +97,76 @@ void Variable::backward()
     {
         (*iter)->_backward();
     }
+}
+
+Variable Variable::operator+(double value)
+{
+    Variable result;
+    result._value = this->_value + value;
+    result._children.insert(this);
+    result._backward = [&]() { this->_gradient += result._gradient; };
+    return result;
+}
+
+
+Variable Variable::operator-(double value)
+{
+    Variable result;
+    result._value = this->_value - value;
+    result._children.insert(this);
+    result._backward = [&]() { this->_gradient += result._gradient; };
+    return result;
+}
+
+
+Variable Variable::operator*(double value)
+{
+    Variable result;
+    result._value = this->_value * value;
+    result._children.insert(this);
+    result._backward = [&, value]() {
+        this->_gradient += result._gradient * value;
+    };
+
+    return result;
+}
+
+
+Variable Variable::operator/(double value)
+{
+    if (value == 0)
+    {
+        throw std::overflow_error("Divide by zero exception");
+    }
+    Variable result = *this * (1.0 / value);
+    return result;
+}
+
+Variable operator+(double left, Variable &right)
+{
+    return right + left;
+}
+
+Variable operator-(double left, Variable &right)
+{
+    return -right + left;
+}
+Variable operator*(double left, Variable &right)
+{
+    return right * left;
+}
+Variable operator/(double left, Variable &right)
+{
+    if (right._value == 0)
+    {
+        throw std::overflow_error("Divide by zero exception");
+    }
+    Variable result;
+    result._value = left / right._value;
+    result._children.insert(&right);
+    result._backward = [&]() {
+        right._gradient +=
+            -left / (right._value * right._value) * result._gradient;
+    };
+    return result;
 }
