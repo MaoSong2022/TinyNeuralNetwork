@@ -1,9 +1,8 @@
 #pragma once
 
-#include <deque>
 #include <functional>
+#include <stack>
 #include <unordered_set>
-
 
 class Variable
 {
@@ -14,7 +13,7 @@ private:
     std::unordered_set<Variable *> _children;
 
     void topological_sort(std::unordered_set<Variable *> &visited,
-                          std::deque<Variable *> &stack);
+                          std::stack<Variable *> &stack);
 
 public:
     Variable() : _value(0), _gradient(0){};

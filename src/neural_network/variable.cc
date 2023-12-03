@@ -74,7 +74,7 @@ Variable Variable::operator/(Variable &other)
 }
 
 void Variable::topological_sort(std::unordered_set<Variable *> &visited,
-                                std::deque<Variable *> &stack)
+                                std::stack<Variable *> &stack)
 {
     if (visited.find(this) != visited.end())
     {
@@ -85,17 +85,18 @@ void Variable::topological_sort(std::unordered_set<Variable *> &visited,
     {
         child->topological_sort(visited, stack);
     }
-    stack.push_front(this);
+    stack.push(this);
 }
 
 void Variable::backward()
 {
     std::unordered_set<Variable *> visited;
-    std::deque<Variable *> stack;
+    std::stack<Variable *> stack;
     topological_sort(visited, stack);
-    for (auto iter = stack.begin(); iter != stack.end(); ++iter)
+    while (!stack.empty())
     {
-        (*iter)->_backward();
+        stack.top()->_backward();
+        stack.pop();
     }
 }
 
