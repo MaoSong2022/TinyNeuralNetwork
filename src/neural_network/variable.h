@@ -41,6 +41,11 @@ public:
         return _gradient;
     }
 
+    const std::unordered_set<Variable *> &children() const
+    {
+        return _children;
+    }
+
     double &mutable_value()
     {
         return _value;
