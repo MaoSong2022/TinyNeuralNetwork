@@ -79,4 +79,13 @@ public:
     friend Variable operator-(double left, Variable &right);
     friend Variable operator*(double left, Variable &right);
     friend Variable operator/(double left, Variable &right);
+
+    Variable exp();
+    Variable log();
+    Variable sin();
+    Variable cos();
+    Variable tan();
+    Variable pow(double power);
+    Variable sinh();
+    Variable cosh();
 };

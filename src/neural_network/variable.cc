@@ -176,3 +176,106 @@ Variable operator/(double left, Variable &right)
     };
     return result;
 }
+
+Variable Variable::exp()
+{
+    Variable result;
+    result._value = std::exp(this->_value);
+    result._children.insert(this);
+    result._backward = [&]() {
+        this->_gradient += result._gradient * result._value;
+    };
+    return result;
+}
+
+Variable Variable::log()
+{
+    if (this->_value == 0)
+    {
+        throw std::overflow_error("Log of zero exception");
+    }
+
+    Variable result;
+    result._value = std::log(this->_value);
+    result._children.insert(this);
+    result._backward = [&]() {
+        this->_gradient += result._gradient / this->_value;
+    };
+    return result;
+}
+
+Variable Variable::sin()
+{
+    Variable result;
+    result._value = std::sin(this->_value);
+    result._children.insert(this);
+    result._backward = [&]() {
+        this->_gradient += result._gradient * std::cos(this->_value);
+    };
+    return result;
+}
+Variable Variable::cos()
+{
+    Variable result;
+    result._value = std::cos(this->_value);
+    result._children.insert(this);
+    result._backward = [&]() {
+        this->_gradient += -result._gradient * std::sin(this->_value);
+    };
+    return result;
+}
+
+Variable Variable::tan()
+{
+    if (std::fmod(this->_value - M_PI_2, M_PI) == 0)
+    {
+        throw std::overflow_error("Tan of pi/2 exception");
+    }
+    Variable result;
+    result._value = std::tan(this->_value);
+    result._children.insert(this);
+    result._backward = [&]() {
+        this->_gradient += result._gradient /
+                           (std::cos(this->_value) * std::cos(this->_value));
+    };
+    return result;
+}
+
+Variable Variable::pow(double power)
+{
+    if (this->_value == 0 && power < 0)
+    {
+        throw std::overflow_error("Power of zero exception");
+    }
+    Variable result;
+    result._value = std::pow(this->_value, power);
+    result._children.insert(this);
+    result._backward = [&, power]() {
+        this->_gradient +=
+            result._gradient * power * std::pow(this->_value, power - 1);
+    };
+    return result;
+}
+
+Variable Variable::sinh()
+{
+    Variable result;
+    result._value = std::sinh(this->_value);
+    result._children.insert(this);
+    result._backward = [&]() {
+        this->_gradient += result._gradient * std::cosh(this->_value);
+    };
+    return result;
+}
+
+Variable Variable::cosh()
+{
+    Variable result;
+    result._value = std::cosh(this->_value);
+    result._children.insert(this);
+    result._backward = [&]() {
+        this->_gradient += result._gradient * std::sinh(this->_value);
+    };
+    return result;
+}
+
