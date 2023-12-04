@@ -150,8 +150,13 @@ Variable operator+(double left, Variable &right)
 
 Variable operator-(double left, Variable &right)
 {
-    return -right + left;
+    Variable result;
+    result._value = left - right._value;
+    result._children.insert(&right);
+    result._backward = [&]() { right._gradient += -result._gradient; };
+    return result;
 }
+
 Variable operator*(double left, Variable &right)
 {
     return right * left;
