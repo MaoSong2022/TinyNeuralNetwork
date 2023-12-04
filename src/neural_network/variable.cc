@@ -4,6 +4,7 @@
 #include <math.h>
 #include <stdexcept>
 
+
 Variable Variable::operator-()
 {
     Variable result;
@@ -171,6 +172,13 @@ Variable operator/(double left, Variable &right)
             -left / (right._value * right._value) * result._gradient;
     };
     return result;
+}
+
+std::ostream &operator<<(std::ostream &os, const Variable &v)
+{
+    os << "("
+       << "value:" << v._value << ", gradient:" << v._gradient << ")";
+    return os;
 }
 
 Variable Variable::exp()

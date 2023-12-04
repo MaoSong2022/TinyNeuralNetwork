@@ -57,10 +57,6 @@ public:
 
     void backward();
 
-    std::ostream &operator<<(std::ostream &os)
-    {
-        return os << "Value: " << _value << " Gradient: " << _gradient;
-    }
 
 public:
     Variable operator-();
@@ -79,6 +75,7 @@ public:
     friend Variable operator-(double left, Variable &right);
     friend Variable operator*(double left, Variable &right);
     friend Variable operator/(double left, Variable &right);
+    friend std::ostream &operator<<(std::ostream &os, const Variable &v);
 
     Variable exp();
     Variable log();
