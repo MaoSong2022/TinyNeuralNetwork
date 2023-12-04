@@ -1,7 +1,11 @@
 if(ENABLE_TESTING)
     set(TEST_SOURCES
         "${CMAKE_CURRENT_SOURCE_DIR}/test_print_hello_world.cc"
-        "${CMAKE_CURRENT_SOURCE_DIR}/test_variable.cc")
+        "${CMAKE_CURRENT_SOURCE_DIR}/test_variable_variable.cc"
+        "${CMAKE_CURRENT_SOURCE_DIR}/test_variable_constant.cc"
+        "${CMAKE_CURRENT_SOURCE_DIR}/test_constant_variable.cc"
+        "${CMAKE_CURRENT_SOURCE_DIR}/test_math_operation.cc"
+        "${CMAKE_CURRENT_SOURCE_DIR}/test_active_function.cc")
     set(TEST_HEADERS "")
 
     add_executable(${UNIT_TEST_NAME} ${TEST_SOURCES} ${TEST_HEADERS})
