@@ -26,7 +26,6 @@ Variable Variable::operator+(Variable &other)
     return result;
 }
 
-
 Variable Variable::operator-(Variable &other)
 {
     Variable result;
@@ -40,7 +39,6 @@ Variable Variable::operator-(Variable &other)
     return result;
 }
 
-
 Variable Variable::operator*(Variable &other)
 {
     Variable result;
@@ -53,7 +51,6 @@ Variable Variable::operator*(Variable &other)
     };
     return result;
 }
-
 
 Variable Variable::operator/(Variable &other)
 {
@@ -110,7 +107,6 @@ Variable Variable::operator+(double value)
     return result;
 }
 
-
 Variable Variable::operator-(double value)
 {
     Variable result;
@@ -119,7 +115,6 @@ Variable Variable::operator-(double value)
     result._backward = [&]() { this->_gradient += result._gradient; };
     return result;
 }
-
 
 Variable Variable::operator*(double value)
 {
@@ -132,7 +127,6 @@ Variable Variable::operator*(double value)
 
     return result;
 }
-
 
 Variable Variable::operator/(double value)
 {
@@ -162,6 +156,7 @@ Variable operator*(double left, Variable &right)
 {
     return right * left;
 }
+
 Variable operator/(double left, Variable &right)
 {
     if (right._value == 0)
@@ -171,7 +166,7 @@ Variable operator/(double left, Variable &right)
     Variable result;
     result._value = left / right._value;
     result._children.insert(&right);
-    result._backward = [&]() {
+    result._backward = [&, left]() {
         right._gradient +=
             -left / (right._value * right._value) * result._gradient;
     };
