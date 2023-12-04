@@ -2,13 +2,13 @@
 #include <catch2/catch.hpp>
 
 
-TEST_CASE("Test variable-constant operations", "[Variable-Constant]")
+TEST_CASE("Test constant-variable operations", "[Constant-Variable]")
 {
     Variable a(2.0);
 
-    SECTION("Test variable double addition")
+    SECTION("Test double variable addition")
     {
-        Variable b = a + 2.0;
+        Variable b = 2.0 + a;
         REQUIRE(b.value() == 4.0);
         REQUIRE(b.children().size() == 1);
         b.mutable_gradient() = 1.0;
@@ -17,20 +17,21 @@ TEST_CASE("Test variable-constant operations", "[Variable-Constant]")
         REQUIRE(a.gradient() == 1.0);
     }
 
-    SECTION("Test variable double subtraction")
+    SECTION("Test double variable subtraction")
     {
-        Variable c = a - 2.0;
+
+        Variable c = 2.0 - a;
         REQUIRE(c.value() == 0.0);
         REQUIRE(c.children().size() == 1);
         c.mutable_gradient() = 1.0;
         c.backward();
         REQUIRE(c.gradient() == 1.0);
-        REQUIRE(a.gradient() == 1.0);
+        REQUIRE(a.gradient() == -1.0);
     }
 
-    SECTION("Test variable double multiplication")
+    SECTION("Test double variable multiplication")
     {
-        Variable d = a * 2.0;
+        Variable d = 2.0 * a;
         REQUIRE(d.value() == 4.0);
         REQUIRE(d.children().size() == 1);
         d.mutable_gradient() = 1.0;
@@ -39,19 +40,20 @@ TEST_CASE("Test variable-constant operations", "[Variable-Constant]")
         REQUIRE(a.gradient() == 2.0);
     }
 
-    SECTION("Test variable double division")
+    SECTION("Test double division")
     {
-        Variable e = a / 2.0;
+        Variable e = 2.0 / a;
         REQUIRE(e.value() == 1.0);
         REQUIRE(e.children().size() == 1);
         e.mutable_gradient() = 1.0;
         e.backward();
         REQUIRE(e.gradient() == 1.0);
-        REQUIRE(a.gradient() == 0.5);
+        REQUIRE(a.gradient() == -0.5);
     }
 
     SECTION("Test double division by zero")
     {
-        REQUIRE_THROWS_AS(a / 0.0, std::overflow_error);
+        Variable temp(0.0);
+        REQUIRE_THROWS_AS(2.0 / temp, std::overflow_error);
     }
 }

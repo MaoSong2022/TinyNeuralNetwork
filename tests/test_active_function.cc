@@ -2,14 +2,14 @@
 #include <catch2/catch.hpp>
 
 
-TEST_CASE("Test variable-constant operations", "[Variable-Constant]")
+TEST_CASE("Test active functions", "[Variable-Active-Function]")
 {
     Variable a(2.0);
 
-    SECTION("Test variable double addition")
+    SECTION("Test ReLU case 1")
     {
-        Variable b = a + 2.0;
-        REQUIRE(b.value() == 4.0);
+        Variable b = a.relu();
+        REQUIRE(b.value() == 2.0);
         REQUIRE(b.children().size() == 1);
         b.mutable_gradient() = 1.0;
         b.backward();
@@ -17,41 +17,37 @@ TEST_CASE("Test variable-constant operations", "[Variable-Constant]")
         REQUIRE(a.gradient() == 1.0);
     }
 
-    SECTION("Test variable double subtraction")
+    SECTION("Test ReLU case 2")
     {
-        Variable c = a - 2.0;
+        Variable temp(-1.0);
+        Variable c = temp.relu();
         REQUIRE(c.value() == 0.0);
         REQUIRE(c.children().size() == 1);
         c.mutable_gradient() = 1.0;
         c.backward();
         REQUIRE(c.gradient() == 1.0);
-        REQUIRE(a.gradient() == 1.0);
+        REQUIRE(temp.gradient() == 0.0);
     }
 
-    SECTION("Test variable double multiplication")
+    SECTION("Test tanh")
     {
-        Variable d = a * 2.0;
-        REQUIRE(d.value() == 4.0);
+        Variable d = a.tanh();
+        REQUIRE(d.value() == 0.9640275800758169);
         REQUIRE(d.children().size() == 1);
         d.mutable_gradient() = 1.0;
         d.backward();
         REQUIRE(d.gradient() == 1.0);
-        REQUIRE(a.gradient() == 2.0);
+        REQUIRE(a.gradient() == 0.07065082485316443);
     }
 
-    SECTION("Test variable double division")
+    SECTION("Test sigmoid")
     {
-        Variable e = a / 2.0;
-        REQUIRE(e.value() == 1.0);
+        Variable e = a.sigmoid();
+        REQUIRE(e.value() == 0.8807970779778823);
         REQUIRE(e.children().size() == 1);
         e.mutable_gradient() = 1.0;
         e.backward();
         REQUIRE(e.gradient() == 1.0);
-        REQUIRE(a.gradient() == 0.5);
-    }
-
-    SECTION("Test double division by zero")
-    {
-        REQUIRE_THROWS_AS(a / 0.0, std::overflow_error);
+        REQUIRE(a.gradient() == 0.10499358540350662);
     }
 }
