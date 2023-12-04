@@ -2,7 +2,7 @@
 #include <catch2/catch.hpp>
 
 
-TEST_CASE("Test operations", "[Variable-Variable]")
+TEST_CASE("Test variable-variable operations", "[Variable-Variable]")
 {
     Variable a(2.0);
     Variable b(3.0);
