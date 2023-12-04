@@ -88,4 +88,8 @@ public:
     Variable pow(double power);
     Variable sinh();
     Variable cosh();
+
+    Variable relu();
+    Variable tanh();
+    Variable sigmoid();
 };

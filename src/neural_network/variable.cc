@@ -1,6 +1,7 @@
 #include "variable.h"
 
 
+#include <math.h>
 #include <stdexcept>
 
 Variable Variable::operator-()
@@ -279,3 +280,44 @@ Variable Variable::cosh()
     return result;
 }
 
+Variable Variable::relu()
+{
+    Variable result;
+    result._value = this->_value > 0 ? this->_value : 0;
+    result._children.insert(this);
+    result._backward = [&]() {
+        if (result._value > 0)
+        {
+            this->_gradient += result._gradient;
+        }
+        else
+        {
+            this->_gradient = 0;
+        }
+    };
+    return result;
+}
+
+Variable Variable::tanh()
+{
+    Variable result;
+    result._value = std::sinh(this->_value) / std::cosh(this->_value);
+    result._children.insert(this);
+    result._backward = [&]() {
+        this->_gradient +=
+            result._gradient * (1 - result._value * result._value);
+    };
+    return result;
+}
+
+Variable Variable::sigmoid()
+{
+    Variable result;
+    result._value = 1 / (1 + std::exp(-this->_value));
+    result._children.insert(this);
+    result._backward = [&]() {
+        this->_gradient +=
+            result._gradient * result._value * (1 - result._value);
+    };
+    return result;
+}
