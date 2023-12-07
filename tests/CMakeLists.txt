@@ -1,16 +1,17 @@
 if(ENABLE_TESTING)
     set(TEST_SOURCES
-        "${CMAKE_CURRENT_SOURCE_DIR}/test_print_hello_world.cc"
         "${CMAKE_CURRENT_SOURCE_DIR}/test_variable_variable.cc"
         "${CMAKE_CURRENT_SOURCE_DIR}/test_variable_constant.cc"
         "${CMAKE_CURRENT_SOURCE_DIR}/test_constant_variable.cc"
         "${CMAKE_CURRENT_SOURCE_DIR}/test_math_operation.cc"
-        "${CMAKE_CURRENT_SOURCE_DIR}/test_active_function.cc")
+        "${CMAKE_CURRENT_SOURCE_DIR}/test_active_function.cc"
+        "${CMAKE_CURRENT_SOURCE_DIR}/test_computational_graph.cc"
+        )
     set(TEST_HEADERS "")
 
     add_executable(${UNIT_TEST_NAME} ${TEST_SOURCES} ${TEST_HEADERS})
 
-    target_link_libraries(${UNIT_TEST_NAME} PUBLIC ${LIBRARY_NAME} ${NEURAL_NETWORK})
+    target_link_libraries(${UNIT_TEST_NAME} PUBLIC ${LIBRARY_NAME} ${NEURAL_NETWORK} ${NEURON})
     target_link_libraries(${UNIT_TEST_NAME} PRIVATE Catch2::Catch2)
 
     target_set_warnings(

@@ -11,7 +11,7 @@ TEST_CASE("Test active functions", "[Variable-Active-Function]")
         Variable b = a.relu();
         REQUIRE(b.value() == 2.0);
         REQUIRE(b.children().size() == 1);
-        b.mutable_gradient() = 1.0;
+        b.set_gradient(1.0);
         b.backward();
         REQUIRE(b.gradient() == 1.0);
         REQUIRE(a.gradient() == 1.0);
@@ -23,7 +23,7 @@ TEST_CASE("Test active functions", "[Variable-Active-Function]")
         Variable c = temp.relu();
         REQUIRE(c.value() == 0.0);
         REQUIRE(c.children().size() == 1);
-        c.mutable_gradient() = 1.0;
+        c.set_gradient(1.0);
         c.backward();
         REQUIRE(c.gradient() == 1.0);
         REQUIRE(temp.gradient() == 0.0);
@@ -34,7 +34,7 @@ TEST_CASE("Test active functions", "[Variable-Active-Function]")
         Variable d = a.tanh();
         REQUIRE(d.value() == 0.9640275800758169);
         REQUIRE(d.children().size() == 1);
-        d.mutable_gradient() = 1.0;
+        d.set_gradient(1.0);
         d.backward();
         REQUIRE(d.gradient() == 1.0);
         REQUIRE(a.gradient() == 0.07065082485316443);
@@ -45,7 +45,7 @@ TEST_CASE("Test active functions", "[Variable-Active-Function]")
         Variable e = a.sigmoid();
         REQUIRE(e.value() == 0.8807970779778823);
         REQUIRE(e.children().size() == 1);
-        e.mutable_gradient() = 1.0;
+        e.set_gradient(1.0);
         e.backward();
         REQUIRE(e.gradient() == 1.0);
         REQUIRE(a.gradient() == 0.10499358540350662);
