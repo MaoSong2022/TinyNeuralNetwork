@@ -2,91 +2,98 @@
 
 #include <functional>
 #include <iostream>
-#include <stack>
-#include <unordered_set>
+#include <string>
+#include <vector>
 
 class Variable
 {
 private:
     double _value;
     double _gradient;
-    std::function<void()> _backward = [] {};
-    std::unordered_set<Variable *> _children;
-
-    void topological_sort(std::unordered_set<Variable *> &visited,
-                          std::stack<Variable *> &stack);
+    std::string _op;
+    std::string _name;
+    Variable *ref = nullptr;
+    std::vector<Variable> _children;
+    std::function<void(Variable *)> _backward = [](Variable *) {};
 
 public:
-    Variable() : _value(0), _gradient(0){};
-    Variable(double _value) : _value(_value), _gradient(0){};
-    Variable(double _value, double _gradient)
-        : _value(_value), _gradient(_gradient){};
+    explicit Variable(double value = 0,
+                      double gradient = 0,
+                      std::string op = "",
+                      std::string name = "")
+        : _value(value), _gradient(gradient), _op(op), _name(name), ref(this){};
 
-    /**
-     * Returns the value.
-     *
-     * @return the value of the variable.
-     */
     double value() const
     {
         return _value;
     }
-    /**
-     * Returns the gradient value.
-     *
-     * @return the gradient value of the variable.
-     */
+
+    void set_value(double value)
+    {
+        _value = value;
+    }
+
     double gradient() const
     {
         return _gradient;
     }
 
-    const std::unordered_set<Variable *> &children() const
+    void set_gradient(double gradient)
+    {
+        _gradient = gradient;
+    }
+
+    const std::vector<Variable> &children() const
     {
         return _children;
     }
 
-    double &mutable_value()
+    void backward()
     {
-        return _value;
-    }
-    double &mutable_gradient()
-    {
-        return _gradient;
+        _backward(this);
+        for (auto &child : _children)
+        {
+            child.backward();
+        }
     }
 
-    void backward();
-
+    void update_gradient(double grad)
+    {
+        _gradient += grad;
+        if (this != ref && ref != nullptr)
+        {
+            ref->update_gradient(grad);
+        }
+    }
 
 public:
-    Variable operator-();
+    friend std::ostream &operator<<(std::ostream &os, const Variable &var);
 
-    Variable operator+(Variable &other);
-    Variable operator-(Variable &other);
-    Variable operator*(Variable &other);
-    Variable operator/(Variable &other);
+    Variable operator+(const Variable &other);
+    Variable operator-(const Variable &other);
+    Variable operator*(const Variable &other);
+    Variable operator/(const Variable &other);
+    Variable operator-() const;
 
-    Variable operator+(double left);
-    Variable operator-(double left);
-    Variable operator*(double left);
-    Variable operator/(double left);
+    Variable operator+(const double other) const;
+    Variable operator-(const double other) const;
+    Variable operator*(const double other) const;
+    Variable operator/(const double other) const;
+    friend Variable operator+(const double other, const Variable &var);
+    friend Variable operator-(const double other, const Variable &var);
+    friend Variable operator*(const double other, const Variable &var);
+    friend Variable operator/(const double other, const Variable &var);
 
-    friend Variable operator+(double left, Variable &right);
-    friend Variable operator-(double left, Variable &right);
-    friend Variable operator*(double left, Variable &right);
-    friend Variable operator/(double left, Variable &right);
-    friend std::ostream &operator<<(std::ostream &os, const Variable &v);
+    Variable pow(const double other) const;
+    Variable exp() const;
+    Variable log() const;
+    Variable sin() const;
+    Variable cos() const;
+    Variable tan() const;
+    Variable sinh() const;
+    Variable cosh() const;
 
-    Variable exp();
-    Variable log();
-    Variable sin();
-    Variable cos();
-    Variable tan();
-    Variable pow(double power);
-    Variable sinh();
-    Variable cosh();
-
-    Variable relu();
-    Variable tanh();
-    Variable sigmoid();
+    Variable tanh() const;
+    Variable relu() const;
+    Variable sigmoid() const;
 };
