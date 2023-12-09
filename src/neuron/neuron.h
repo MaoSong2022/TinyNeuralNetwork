@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "../neural_network/variable.h"
+#include "../variable/variable.h"
 
 class Neuron
 {
