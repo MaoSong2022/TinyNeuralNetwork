@@ -66,6 +66,11 @@ public:
         }
     }
 
+    void zero_gradient()
+    {
+        _gradient = 0;
+    }
+
 public:
     friend std::ostream &operator<<(std::ostream &os, const Variable &var);
 
