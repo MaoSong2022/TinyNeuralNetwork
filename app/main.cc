@@ -10,7 +10,6 @@
 #include <spdlog/spdlog.h>
 
 #include "config.hpp"
-#include "my_lib.h"
 #include "variable.h"
 
 using json = nlohmann::json;
