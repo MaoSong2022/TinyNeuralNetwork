@@ -6,6 +6,7 @@ if(ENABLE_TESTING)
         "${CMAKE_CURRENT_SOURCE_DIR}/test_math_operation.cc"
         "${CMAKE_CURRENT_SOURCE_DIR}/test_active_function.cc"
         "${CMAKE_CURRENT_SOURCE_DIR}/test_computational_graph.cc"
+        "${CMAKE_CURRENT_SOURCE_DIR}/test_neuron.cc"
         )
     set(TEST_HEADERS "")
 
