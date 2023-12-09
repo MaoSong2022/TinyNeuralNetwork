@@ -13,20 +13,15 @@ std::vector<Variable> Layer::parameters() const
     return result;
 }
 
-std::variant<std::vector<Variable>, Variable> Layer::forward(
-    const std::vector<double> &inputs)
+std::vector<Variable> Layer::forward(const std::vector<double> &inputs)
 {
-    // last layer
-    if (_n_out == 1)
-    {
-        return _neurons[0].forward(inputs);
-    }
-
-    // intermediate layer
     std::vector<Variable> result;
     for (auto &neuron : _neurons)
     {
-        result.push_back(neuron.forward(inputs));
+        result.push_back(neuron.forward(inputs, _activate_function));
+    }
+    return result;
+}
     }
     return result;
 }

@@ -18,6 +18,5 @@ public:
 
     std::vector<Variable> parameters() const;
 
-    std::variant<std::vector<Variable>, Variable> forward(
-        const std::vector<double> &inputs);
+    std::vector<Variable> forward(const std::vector<double> &inputs);
 };
