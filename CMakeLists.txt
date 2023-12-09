@@ -35,9 +35,10 @@ option(ENABLE_CMAKE_FORMAT "Enable to add cmake-format." ON)
 option(ENABLE_LTO "Enable to add Link Time Optimization." ON)
 
 # Project/Library Names
-set(LIBRARY_NAME "lib")
-set(NEURAL_NETWORK "neural_network")
+set(VARIABLE "variable")
 set(NEURON "neuron")
+set(LAYER "layer")
+set(NEURAL_NETWORK "neural_network")
 set(UNIT_TEST_NAME "unit_tests")
 set(EXECUTABLE_NAME "main")
 
@@ -109,13 +110,15 @@ add_subdirectory(tests)
 
 install(
     TARGETS ${EXECUTABLE_NAME}
-EXPORT ${LIBRARY_NAME}
+    EXPORT ${VARIABLE}
+    EXPORT ${NEURON}
+    EXPORT ${LAYER}
     EXPORT ${NEURAL_NETWORK}
     ARCHIVE DESTINATION lib
     LIBRARY DESTINATION lib
     RUNTIME DESTINATION bin)
 
 install(
-    TARGETS ${LIBRARY_NAME} ${NEURAL_NETWORK} ${NEURON}
+    TARGETS ${VARIABLE} ${NEURON} ${LAYER} ${NEURAL_NETWORK}
     ARCHIVE DESTINATION lib
     LIBRARY DESTINATION lib)

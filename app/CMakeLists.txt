@@ -4,15 +4,7 @@ add_executable(${EXECUTABLE_NAME} ${APP_SOURCES})
 
 target_link_libraries(
     ${EXECUTABLE_NAME}
-    PRIVATE ${NEURAL_NETWORK}
-            nlohmann_json::nlohmann_json
-            fmt::fmt
-            spdlog::spdlog
-            cxxopts::cxxopts)
-
-target_link_libraries(
-    ${EXECUTABLE_NAME}
-    PRIVATE ${NEURON}
+    PRIVATE ${VARIABLE} ${NEURON} ${LAYER} ${NEURAL_NETWORK}
             nlohmann_json::nlohmann_json
             fmt::fmt
             spdlog::spdlog
