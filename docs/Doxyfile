@@ -6,9 +6,9 @@
 # Project related configuration options
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING       = UTF-8
-PROJECT_NAME            = "C++ Project Template"
+PROJECT_NAME            = "C++ Tiny Neural Network"
 PROJECT_NUMBER          = 1.0.0
-PROJECT_BRIEF           =
+PROJECT_BRIEF           = "An C++ implemented Neural Network"
 PROJECT_LOGO            =
 OUTPUT_DIRECTORY        = ./
 OUTPUT_LANGUAGE         = English
