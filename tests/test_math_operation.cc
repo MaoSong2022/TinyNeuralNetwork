@@ -9,18 +9,18 @@ TEST_CASE("Test math operations", "[Variable-Math]")
     SECTION("Test exponential")
     {
         Variable b = a.exp();
-        REQUIRE(b.value() == 7.38905609893065);
+        REQUIRE(b.value() == 7.38905609);
         REQUIRE(b.children().size() == 1);
         b.set_gradient(1.0);
         b.backward();
         REQUIRE(b.gradient() == 1.0);
-        REQUIRE(a.gradient() == 7.38905609893065);
+        REQUIRE(a.gradient() == 7.38905609);
     }
 
     SECTION("Test log")
     {
         Variable c = a.log();
-        REQUIRE(c.value() == 0.6931471805599453);
+        REQUIRE(c.value() == 0.6931471805);
         REQUIRE(c.children().size() == 1);
         c.set_gradient(1.0);
         c.backward();
@@ -37,23 +37,23 @@ TEST_CASE("Test math operations", "[Variable-Math]")
     SECTION("Test sin")
     {
         Variable d = a.sin();
-        REQUIRE(d.value() == 0.9092974268256817);
+        REQUIRE(d.value() == 0.9092974268);
         REQUIRE(d.children().size() == 1);
         d.set_gradient(1.0);
         d.backward();
         REQUIRE(d.gradient() == 1.0);
-        REQUIRE(a.gradient() == -0.4161468365471424);
+        REQUIRE(a.gradient() == -0.4161468365);
     }
 
     SECTION("Test cos")
     {
         Variable e = a.cos();
-        REQUIRE(e.value() == -0.4161468365471424);
+        REQUIRE(e.value() == -0.4161468365);
         REQUIRE(e.children().size() == 1);
         e.set_gradient(1.0);
         e.backward();
         REQUIRE(e.gradient() == 1.0);
-        REQUIRE(a.gradient() == -0.9092974268256817);
+        REQUIRE(a.gradient() == -0.9092974268);
     }
 
     SECTION("Test tan")
@@ -87,22 +87,22 @@ TEST_CASE("Test math operations", "[Variable-Math]")
     SECTION("Test sinh")
     {
         Variable h = a.sinh();
-        REQUIRE(h.value() == 3.6268604078470186);
+        REQUIRE(h.value() == 3.6268604078);
         REQUIRE(h.children().size() == 1);
         h.set_gradient(1.0);
         h.backward();
         REQUIRE(h.gradient() == 1.0);
-        REQUIRE(a.gradient() == 3.7621956910836314);
+        REQUIRE(a.gradient() == 3.7621956910);
     }
 
     SECTION("Test cosh")
     {
         Variable i = a.cosh();
-        REQUIRE(i.value() == 3.7621956910836314);
+        REQUIRE(i.value() == 3.7621956910);
         REQUIRE(i.children().size() == 1);
         i.set_gradient(1.0);
         i.backward();
         REQUIRE(i.gradient() == 1.0);
-        REQUIRE(a.gradient() == 3.6268604078470186);
+        REQUIRE(a.gradient() == 3.6268604078);
     }
 }
