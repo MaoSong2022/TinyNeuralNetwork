@@ -14,23 +14,22 @@ private:
 public:
     Neuron(size_t n_in) : _weights(std::vector<Variable>(n_in)), _bias(0.0){};
 
-    std::vector<Variable> weights()
+    const std::vector<Variable> &weights() const
     {
         return _weights;
     }
 
-    Variable bias()
+    const Variable &bias() const
     {
         return _bias;
     }
 
-    std::vector<Variable> parameters()
+    std::vector<Variable> parameters() const
     {
-        std::vector<Variable> result;
-        result.insert(result.end(), _weights.begin(), _weights.end());
+        std::vector<Variable> result = _weights;
         result.push_back(_bias);
         return result;
     }
 
-    Variable forward(const std::vector<Variable> &inputs);
+    Variable forward(const std::vector<double> &inputs);
 };

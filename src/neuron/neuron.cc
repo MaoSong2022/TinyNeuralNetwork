@@ -1,7 +1,7 @@
 
 #include "neuron.h"
 
-Variable Neuron::forward(const std::vector<Variable> &inputs)
+Variable Neuron::forward(const std::vector<double> &inputs)
 {
     Variable result = _bias;
     for (size_t i = 0; i < inputs.size(); i++)
