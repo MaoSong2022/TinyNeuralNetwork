@@ -22,3 +22,5 @@ public:
 
     std::vector<Variable> forward(const std::vector<double> &inputs);
 };
+
+std::vector<double> value(const std::vector<Variable> &variables);

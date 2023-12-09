@@ -22,6 +22,21 @@ std::vector<Variable> Layer::forward(const std::vector<double> &inputs)
     }
     return result;
 }
+
+
+/**
+ * Generates a vector of values of the input variables.
+ *
+ * @param variables the vector of Variable objects to process
+ *
+ * @return a vector of double values generated from the variables
+ */
+std::vector<double> value(const std::vector<Variable> &variables)
+{
+    std::vector<double> result;
+    for (const auto &variable : variables)
+    {
+        result.push_back(variable.value());
     }
     return result;
 }
