@@ -1,6 +1,6 @@
 # Sources and Headers
-set(LIBRARY_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/variable.cc")
-set(LIBRARY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/variable.h")
+set(LIBRARY_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/mlp.cc")
+set(LIBRARY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/mlp.h")
 set(LIBRARY_INCLUDES "./" "${CMAKE_BINARY_DIR}/configured_files/include")
 
 # MyLib Library
