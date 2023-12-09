@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['variable_41',['Variable',['../classVariable.html',1,'']]]
+  ['mlp_42',['MLP',['../classMLP.html',1,'']]]
 ];

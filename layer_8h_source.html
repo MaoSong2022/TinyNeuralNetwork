@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>C++ Tiny Neural Network: /home/runner/work/TinyNeuralNetwork/TinyNeuralNetwork/src/neural_network/layer.h Source File</title>
+<title>C++ Tiny Neural Network: /home/runner/work/TinyNeuralNetwork/TinyNeuralNetwork/src/layer/layer.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a4c1bc47733d52c12dcbe7406a6f5ba1.html">neural_network</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_8b1b1d3ff28e273b117e2ca277e8d05f.html">layer</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -71,7 +71,36 @@ $(function() {
 <div class="title">layer.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="layer_8h.html">Go to the documentation of this file.</a><div class="fragment"></div><!-- fragment --></div><!-- contents -->
+<a href="layer_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;../neuron/neuron.h&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="classLayer.html">    7</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLayer.html">Layer</a></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordtype">size_t</span> _n_in;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordtype">size_t</span> _n_out;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    std::vector&lt;Neuron&gt; _neurons;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classLayer.html#a345d3a68a20ac9a26d029ee0b10b24ee">   15</a></span>&#160;    <a class="code" href="classLayer.html#a345d3a68a20ac9a26d029ee0b10b24ee">Layer</a>(<span class="keywordtype">size_t</span> n_in, <span class="keywordtype">size_t</span> n_out)</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        : _n_in(n_in), _n_out(n_out),</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;          _neurons(std::vector&lt;<a class="code" href="classNeuron.html">Neuron</a>&gt;(n_out, <a class="code" href="classNeuron.html">Neuron</a>(n_in))){};</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    std::vector&lt;Variable&gt; <a class="code" href="classLayer.html#a5f217477960cd1f8d82a17b680107da3">parameters</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    std::variant&lt;std::vector&lt;Variable&gt;, <a class="code" href="classVariable.html">Variable</a>&gt; <a class="code" href="classLayer.html#ad8394e5bb75d2aed1dc85e25b3b90b4f">forward</a>(</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">const</span> std::vector&lt;double&gt; &amp;inputs);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
+<div class="ttc" id="aclassLayer_html"><div class="ttname"><a href="classLayer.html">Layer</a></div><div class="ttdef"><b>Definition:</b> layer.h:8</div></div>
+<div class="ttc" id="aclassLayer_html_a345d3a68a20ac9a26d029ee0b10b24ee"><div class="ttname"><a href="classLayer.html#a345d3a68a20ac9a26d029ee0b10b24ee">Layer::Layer</a></div><div class="ttdeci">Layer(size_t n_in, size_t n_out)</div><div class="ttdef"><b>Definition:</b> layer.h:15</div></div>
+<div class="ttc" id="aclassLayer_html_a5f217477960cd1f8d82a17b680107da3"><div class="ttname"><a href="classLayer.html#a5f217477960cd1f8d82a17b680107da3">Layer::parameters</a></div><div class="ttdeci">std::vector&lt; Variable &gt; parameters() const</div><div class="ttdef"><b>Definition:</b> layer.cc:4</div></div>
+<div class="ttc" id="aclassLayer_html_ad8394e5bb75d2aed1dc85e25b3b90b4f"><div class="ttname"><a href="classLayer.html#ad8394e5bb75d2aed1dc85e25b3b90b4f">Layer::forward</a></div><div class="ttdeci">std::variant&lt; std::vector&lt; Variable &gt;, Variable &gt; forward(const std::vector&lt; double &gt; &amp;inputs)</div><div class="ttdef"><b>Definition:</b> layer.cc:16</div></div>
+<div class="ttc" id="aclassNeuron_html"><div class="ttname"><a href="classNeuron.html">Neuron</a></div><div class="ttdef"><b>Definition:</b> neuron.h:8</div></div>
+<div class="ttc" id="aclassVariable_html"><div class="ttname"><a href="classVariable.html">Variable</a></div><div class="ttdef"><b>Definition:</b> variable.h:9</div></div>
+</div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
