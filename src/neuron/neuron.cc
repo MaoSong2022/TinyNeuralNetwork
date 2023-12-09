@@ -8,5 +8,18 @@ Variable Neuron::forward(const std::vector<double> &inputs)
     {
         result = result + _weights[i] * inputs[i];
     }
-    return result;
+
+    if (_activate_function == "relu")
+    {
+        return result.relu();
+    }
+    if (_activate_function == "sigmoid")
+    {
+        return result.sigmoid();
+    }
+    if (_activate_function == "tanh")
+    {
+        return result.tanh();
+    }
+    throw std::runtime_error("unknown activation function");
 }
