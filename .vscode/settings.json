@@ -246,5 +246,8 @@
     "C_Cpp_Runner.cStandard": "c11",
     "C_Cpp_Runner.enableWarnings": true,
     "C_Cpp_Runner.warningsAsError": false,
-    "workbench.editor.empty.hint": "hidden"
+    "workbench.editor.empty.hint": "hidden",
+    "cSpell.words": [
+        "relu"
+    ]
 }
