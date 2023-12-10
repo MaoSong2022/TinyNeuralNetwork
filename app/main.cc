@@ -10,12 +10,13 @@
 #include <spdlog/spdlog.h>
 
 #include "config.hpp"
-#include "variable.h"
+#include "loss.h"
+#include "mlp.h"
 
 using json = nlohmann::json;
 namespace fs = std::filesystem;
 
-int main(int argc, char **argv)
+int main()
 {
     Variable a(2.0);
     Variable b(3.0);
@@ -30,13 +31,6 @@ int main(int argc, char **argv)
     std::cout << "SPDLOG: " << SPDLOG_VER_MAJOR << "." << SPDLOG_VER_MINOR
               << "." << SPDLOG_VER_PATCH << '\n';
     std::cout << "\n\nUsage Example:\n";
-
-    // Compiler Warning and clang tidy error
-    // std::int32_t i = 0;
-
-    // Adress Sanitizer should see this
-    // int *x = new int[42];
-    // x[100] = 5; // Boom!
 
     const auto welcome_message =
         fmt::format("Welcome to {} v{}\n", project_name, project_version);
@@ -92,6 +86,47 @@ int main(int argc, char **argv)
     {
         const auto name = parsed_data["name"];
         fmt::print("Name: {}\n", name);
+    }
+    std::vector<std::vector<double>> inputs = {
+        {2.0, 3.0, -1.0},
+        {3.0, -1.0, 0.5},
+        {0.5, 1.0, 1.0},
+        {1.0, 1.0, -1.0},
+    };
+    std::vector<double> targets = {1.0, -1.0, -1.0, 1.0};
+
+    size_t num_inputs = inputs[0].size();
+    std::vector<size_t> num_outputs{4, 4, 1};
+
+    MLP mlp(num_inputs, num_outputs);
+
+    size_t iters = 20;
+    double lr = 0.01;
+
+    for (size_t iter = 0; iter < iters; iter++)
+    {
+        std::vector<Variable> predictions;
+        for (const auto &input : inputs)
+        {
+            std::vector<Variable> result = mlp.forward(input);
+            predictions.push_back(result[0]);
+        }
+        Variable loss = MSELoss(predictions, targets);
+
+        // zero gradient
+        for (auto &parameter : mlp.parameters())
+        {
+            parameter.zero_grad();
+        }
+
+        // backward
+        loss.backward();
+
+        // update values
+        for (auto &parameter : mlp.parameters())
+        {
+            parameter.gradient_descent(lr);
+        }
     }
 
     return 0;
