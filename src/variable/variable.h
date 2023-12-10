@@ -66,7 +66,7 @@ public:
         }
     }
 
-    void zero_gradient()
+    void zero_grad()
     {
         _gradient = 0;
     }
