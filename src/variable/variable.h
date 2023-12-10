@@ -71,6 +71,11 @@ public:
         _gradient = 0;
     }
 
+    void gradient_descent(double lr)
+    {
+        _value -= lr * _gradient;
+    }
+
 public:
     friend std::ostream &operator<<(std::ostream &os, const Variable &var);
 
