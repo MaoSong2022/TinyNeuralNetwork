@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['forward_60',['forward',['../classLayer.html#ad8394e5bb75d2aed1dc85e25b3b90b4f',1,'Layer::forward()'],['../classNeuron.html#a176b648b3fbae3169b644f1a06745987',1,'Neuron::forward()']]]
+  ['forward_66',['forward',['../classLayer.html#a59dd3efd931342e3eca2062a3b54708c',1,'Layer::forward()'],['../classMLP.html#a849439b55337c7b7f12a4a672a41b132',1,'MLP::forward()'],['../classNeuron.html#a176b648b3fbae3169b644f1a06745987',1,'Neuron::forward()']]]
 ];

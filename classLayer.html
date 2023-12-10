@@ -75,16 +75,16 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a345d3a68a20ac9a26d029ee0b10b24ee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#a345d3a68a20ac9a26d029ee0b10b24ee">Layer</a> (size_t n_in, size_t n_out)</td></tr>
-<tr class="separator:a345d3a68a20ac9a26d029ee0b10b24ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2ae60474f7473c43607935ebd681e89"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#ac2ae60474f7473c43607935ebd681e89">Layer</a> (size_t n_in, size_t n_out, std::string activate_function=&quot;tanh&quot;)</td></tr>
+<tr class="separator:ac2ae60474f7473c43607935ebd681e89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f217477960cd1f8d82a17b680107da3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#a5f217477960cd1f8d82a17b680107da3">parameters</a> () const</td></tr>
 <tr class="separator:a5f217477960cd1f8d82a17b680107da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8394e5bb75d2aed1dc85e25b3b90b4f"><td class="memItemLeft" align="right" valign="top">std::variant&lt; std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt;, <a class="el" href="classVariable.html">Variable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#ad8394e5bb75d2aed1dc85e25b3b90b4f">forward</a> (const std::vector&lt; double &gt; &amp;inputs)</td></tr>
-<tr class="separator:ad8394e5bb75d2aed1dc85e25b3b90b4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59dd3efd931342e3eca2062a3b54708c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#a59dd3efd931342e3eca2062a3b54708c">forward</a> (const std::vector&lt; double &gt; &amp;inputs)</td></tr>
+<tr class="separator:a59dd3efd931342e3eca2062a3b54708c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a345d3a68a20ac9a26d029ee0b10b24ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a345d3a68a20ac9a26d029ee0b10b24ee">&#9670;&nbsp;</a></span>Layer()</h2>
+<a id="ac2ae60474f7473c43607935ebd681e89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2ae60474f7473c43607935ebd681e89">&#9670;&nbsp;</a></span>Layer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -102,7 +102,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>n_out</em>&#160;</td>
+          <td class="paramname"><em>n_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>activate_function</em> = <code>&quot;tanh&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -120,14 +126,14 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad8394e5bb75d2aed1dc85e25b3b90b4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad8394e5bb75d2aed1dc85e25b3b90b4f">&#9670;&nbsp;</a></span>forward()</h2>
+<a id="a59dd3efd931342e3eca2062a3b54708c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59dd3efd931342e3eca2062a3b54708c">&#9670;&nbsp;</a></span>forward()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::variant&lt; std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt;, <a class="el" href="classVariable.html">Variable</a> &gt; Layer::forward </td>
+          <td class="memname">std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt; Layer::forward </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
           <td class="paramname"><em>inputs</em></td><td>)</td>

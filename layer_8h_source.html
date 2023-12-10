@@ -82,24 +82,27 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordtype">size_t</span> _n_in;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordtype">size_t</span> _n_out;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    std::vector&lt;Neuron&gt; _neurons;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classLayer.html#a345d3a68a20ac9a26d029ee0b10b24ee">   15</a></span>&#160;    <a class="code" href="classLayer.html#a345d3a68a20ac9a26d029ee0b10b24ee">Layer</a>(<span class="keywordtype">size_t</span> n_in, <span class="keywordtype">size_t</span> n_out)</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        : _n_in(n_in), _n_out(n_out),</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;          _neurons(std::vector&lt;<a class="code" href="classNeuron.html">Neuron</a>&gt;(n_out, <a class="code" href="classNeuron.html">Neuron</a>(n_in))){};</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    std::vector&lt;Variable&gt; <a class="code" href="classLayer.html#a5f217477960cd1f8d82a17b680107da3">parameters</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    std::string _activate_function = <span class="stringliteral">&quot;tanh&quot;</span>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    std::vector&lt;Neuron&gt; _neurons;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classLayer.html#ac2ae60474f7473c43607935ebd681e89">   16</a></span>&#160;    <a class="code" href="classLayer.html#ac2ae60474f7473c43607935ebd681e89">Layer</a>(<span class="keywordtype">size_t</span> n_in, <span class="keywordtype">size_t</span> n_out, std::string activate_function = <span class="stringliteral">&quot;tanh&quot;</span>)</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        : _n_in(n_in), _n_out(n_out), _activate_function(activate_function),</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;          _neurons(</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;              std::vector&lt;<a class="code" href="classNeuron.html">Neuron</a>&gt;(n_out, <a class="code" href="classNeuron.html">Neuron</a>(n_in, activate_function))){};</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    std::variant&lt;std::vector&lt;Variable&gt;, <a class="code" href="classVariable.html">Variable</a>&gt; <a class="code" href="classLayer.html#ad8394e5bb75d2aed1dc85e25b3b90b4f">forward</a>(</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">const</span> std::vector&lt;double&gt; &amp;inputs);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    std::vector&lt;Variable&gt; <a class="code" href="classLayer.html#a5f217477960cd1f8d82a17b680107da3">parameters</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    std::vector&lt;Variable&gt; <a class="code" href="classLayer.html#a59dd3efd931342e3eca2062a3b54708c">forward</a>(<span class="keyword">const</span> std::vector&lt;double&gt; &amp;inputs);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;};</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;std::vector&lt;double&gt; <a class="code" href="layer_8h.html#a10d73135ebbc4ccd0635d908ea8c5f58">value</a>(<span class="keyword">const</span> std::vector&lt;Variable&gt; &amp;variables);</div>
 <div class="ttc" id="aclassLayer_html"><div class="ttname"><a href="classLayer.html">Layer</a></div><div class="ttdef"><b>Definition:</b> layer.h:8</div></div>
-<div class="ttc" id="aclassLayer_html_a345d3a68a20ac9a26d029ee0b10b24ee"><div class="ttname"><a href="classLayer.html#a345d3a68a20ac9a26d029ee0b10b24ee">Layer::Layer</a></div><div class="ttdeci">Layer(size_t n_in, size_t n_out)</div><div class="ttdef"><b>Definition:</b> layer.h:15</div></div>
+<div class="ttc" id="aclassLayer_html_a59dd3efd931342e3eca2062a3b54708c"><div class="ttname"><a href="classLayer.html#a59dd3efd931342e3eca2062a3b54708c">Layer::forward</a></div><div class="ttdeci">std::vector&lt; Variable &gt; forward(const std::vector&lt; double &gt; &amp;inputs)</div><div class="ttdef"><b>Definition:</b> layer.cc:16</div></div>
 <div class="ttc" id="aclassLayer_html_a5f217477960cd1f8d82a17b680107da3"><div class="ttname"><a href="classLayer.html#a5f217477960cd1f8d82a17b680107da3">Layer::parameters</a></div><div class="ttdeci">std::vector&lt; Variable &gt; parameters() const</div><div class="ttdef"><b>Definition:</b> layer.cc:4</div></div>
-<div class="ttc" id="aclassLayer_html_ad8394e5bb75d2aed1dc85e25b3b90b4f"><div class="ttname"><a href="classLayer.html#ad8394e5bb75d2aed1dc85e25b3b90b4f">Layer::forward</a></div><div class="ttdeci">std::variant&lt; std::vector&lt; Variable &gt;, Variable &gt; forward(const std::vector&lt; double &gt; &amp;inputs)</div><div class="ttdef"><b>Definition:</b> layer.cc:16</div></div>
+<div class="ttc" id="aclassLayer_html_ac2ae60474f7473c43607935ebd681e89"><div class="ttname"><a href="classLayer.html#ac2ae60474f7473c43607935ebd681e89">Layer::Layer</a></div><div class="ttdeci">Layer(size_t n_in, size_t n_out, std::string activate_function=&quot;tanh&quot;)</div><div class="ttdef"><b>Definition:</b> layer.h:16</div></div>
 <div class="ttc" id="aclassNeuron_html"><div class="ttname"><a href="classNeuron.html">Neuron</a></div><div class="ttdef"><b>Definition:</b> neuron.h:8</div></div>
-<div class="ttc" id="aclassVariable_html"><div class="ttname"><a href="classVariable.html">Variable</a></div><div class="ttdef"><b>Definition:</b> variable.h:9</div></div>
+<div class="ttc" id="alayer_8h_html_a10d73135ebbc4ccd0635d908ea8c5f58"><div class="ttname"><a href="layer_8h.html#a10d73135ebbc4ccd0635d908ea8c5f58">value</a></div><div class="ttdeci">std::vector&lt; double &gt; value(const std::vector&lt; Variable &gt; &amp;variables)</div><div class="ttdef"><b>Definition:</b> layer.cc:34</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

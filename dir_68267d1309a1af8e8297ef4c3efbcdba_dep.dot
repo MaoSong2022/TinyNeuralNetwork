@@ -6,11 +6,13 @@ digraph "/home/runner/work/TinyNeuralNetwork/TinyNeuralNetwork/src" {
     graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_68267d1309a1af8e8297ef4c3efbcdba.html"];
     dir_68267d1309a1af8e8297ef4c3efbcdba [shape=plaintext label="src"];
   dir_8b1b1d3ff28e273b117e2ca277e8d05f [shape=box label="layer" fillcolor="white" style="filled" URL="dir_8b1b1d3ff28e273b117e2ca277e8d05f.html"];
+  dir_f372b5d0e0b042a6c6b947f9ebe48d59 [shape=box label="loss" fillcolor="white" style="filled" URL="dir_f372b5d0e0b042a6c6b947f9ebe48d59.html"];
   dir_a4c1bc47733d52c12dcbe7406a6f5ba1 [shape=box label="neural_network" fillcolor="white" style="filled" URL="dir_a4c1bc47733d52c12dcbe7406a6f5ba1.html"];
   dir_0c9ea08de28bb1cd5197f7d034c44c7e [shape=box label="neuron" fillcolor="white" style="filled" URL="dir_0c9ea08de28bb1cd5197f7d034c44c7e.html"];
   dir_dd920bd76ff7422f03265981cd757b41 [shape=box label="variable" fillcolor="white" style="filled" URL="dir_dd920bd76ff7422f03265981cd757b41.html"];
   }
   dir_a4c1bc47733d52c12dcbe7406a6f5ba1->dir_8b1b1d3ff28e273b117e2ca277e8d05f [headlabel="1", labeldistance=1.5 headhref="dir_000002_000001.html"];
   dir_8b1b1d3ff28e273b117e2ca277e8d05f->dir_0c9ea08de28bb1cd5197f7d034c44c7e [headlabel="1", labeldistance=1.5 headhref="dir_000001_000003.html"];
+  dir_f372b5d0e0b042a6c6b947f9ebe48d59->dir_dd920bd76ff7422f03265981cd757b41 [headlabel="1", labeldistance=1.5 headhref="dir_000005_000004.html"];
   dir_0c9ea08de28bb1cd5197f7d034c44c7e->dir_dd920bd76ff7422f03265981cd757b41 [headlabel="1", labeldistance=1.5 headhref="dir_000003_000004.html"];
 }

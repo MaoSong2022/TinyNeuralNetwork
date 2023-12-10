@@ -1,0 +1,11 @@
+digraph "/home/runner/work/TinyNeuralNetwork/TinyNeuralNetwork/src/loss" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_68267d1309a1af8e8297ef4c3efbcdba {
+    graph [ bgcolor="#ddddee", pencolor="black", label="src" fontname="Helvetica", fontsize="10", URL="dir_68267d1309a1af8e8297ef4c3efbcdba.html"]
+  dir_dd920bd76ff7422f03265981cd757b41 [shape=box label="variable" URL="dir_dd920bd76ff7422f03265981cd757b41.html"];
+  dir_f372b5d0e0b042a6c6b947f9ebe48d59 [shape=box, label="loss", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_f372b5d0e0b042a6c6b947f9ebe48d59.html"];
+  }
+  dir_f372b5d0e0b042a6c6b947f9ebe48d59->dir_dd920bd76ff7422f03265981cd757b41 [headlabel="1", labeldistance=1.5 headhref="dir_000005_000004.html"];
+}

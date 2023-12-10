@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['value_82',['value',['../classVariable.html#af2112084f59c35856083a57024e072e8',1,'Variable']]],
-  ['variable_83',['Variable',['../classVariable.html#af9342bc3ef8bdb0009bbcf2f3a71b772',1,'Variable']]]
+  ['update_5fgradient_89',['update_gradient',['../classVariable.html#a20a223c7898f68de41c19b1615e83a92',1,'Variable']]]
 ];

@@ -79,8 +79,31 @@ $(function() {
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="classMLP.html">    7</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMLP.html">MLP</a></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;};</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordtype">size_t</span> _n_in;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    std::vector&lt;size_t&gt; _n_outs;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    std::vector&lt;Layer&gt; _layers;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classMLP.html#ae81225074bcbfbfdd30ca09e035a2d3e">   15</a></span>&#160;    <a class="code" href="classMLP.html#ae81225074bcbfbfdd30ca09e035a2d3e">MLP</a>(<span class="keywordtype">size_t</span> n_in, std::vector&lt;size_t&gt; n_outs) : _n_in(n_in), _n_outs(n_outs)</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordtype">size_t</span> n_prev = n_in;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> n_out : n_outs)</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            _layers.push_back(<a class="code" href="classLayer.html">Layer</a>(n_prev, n_out));</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            n_prev = n_out;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        }</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    std::vector&lt;Variable&gt; <a class="code" href="classMLP.html#a76e39392a67160708ce48ffc53a21b17">parameters</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    std::vector&lt;Variable&gt; <a class="code" href="classMLP.html#a849439b55337c7b7f12a4a672a41b132">forward</a>(<span class="keyword">const</span> std::vector&lt;double&gt; &amp;inputs);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
+<div class="ttc" id="aclassLayer_html"><div class="ttname"><a href="classLayer.html">Layer</a></div><div class="ttdef"><b>Definition:</b> layer.h:8</div></div>
 <div class="ttc" id="aclassMLP_html"><div class="ttname"><a href="classMLP.html">MLP</a></div><div class="ttdef"><b>Definition:</b> mlp.h:8</div></div>
+<div class="ttc" id="aclassMLP_html_a76e39392a67160708ce48ffc53a21b17"><div class="ttname"><a href="classMLP.html#a76e39392a67160708ce48ffc53a21b17">MLP::parameters</a></div><div class="ttdeci">std::vector&lt; Variable &gt; parameters() const</div><div class="ttdef"><b>Definition:</b> mlp.cc:4</div></div>
+<div class="ttc" id="aclassMLP_html_a849439b55337c7b7f12a4a672a41b132"><div class="ttname"><a href="classMLP.html#a849439b55337c7b7f12a4a672a41b132">MLP::forward</a></div><div class="ttdeci">std::vector&lt; Variable &gt; forward(const std::vector&lt; double &gt; &amp;inputs)</div><div class="ttdef"><b>Definition:</b> mlp.cc:16</div></div>
+<div class="ttc" id="aclassMLP_html_ae81225074bcbfbfdd30ca09e035a2d3e"><div class="ttname"><a href="classMLP.html#ae81225074bcbfbfdd30ca09e035a2d3e">MLP::MLP</a></div><div class="ttdeci">MLP(size_t n_in, std::vector&lt; size_t &gt; n_outs)</div><div class="ttdef"><b>Definition:</b> mlp.h:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
