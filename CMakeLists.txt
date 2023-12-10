@@ -39,6 +39,7 @@ set(VARIABLE "variable")
 set(NEURON "neuron")
 set(LAYER "layer")
 set(NEURAL_NETWORK "neural_network")
+set(LOSS "loss")
 set(UNIT_TEST_NAME "unit_tests")
 set(EXECUTABLE_NAME "main")
 
@@ -114,11 +115,12 @@ install(
     EXPORT ${NEURON}
     EXPORT ${LAYER}
     EXPORT ${NEURAL_NETWORK}
+    EXPORT ${LOSS}
     ARCHIVE DESTINATION lib
     LIBRARY DESTINATION lib
     RUNTIME DESTINATION bin)
 
 install(
-    TARGETS ${VARIABLE} ${NEURON} ${LAYER} ${NEURAL_NETWORK}
+    TARGETS ${VARIABLE} ${NEURON} ${LAYER} ${NEURAL_NETWORK} ${LOSS}
     ARCHIVE DESTINATION lib
     LIBRARY DESTINATION lib)
