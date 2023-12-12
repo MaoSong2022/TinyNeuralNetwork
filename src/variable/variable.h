@@ -45,6 +45,19 @@ public:
         this->ref = other.ref;
         return *this;
     }
+
+    Variable &operator=(Variable &&other)
+    {
+        this->_value = other._value;
+        this->_gradient = other._gradient;
+        this->_op = other._op;
+        this->_name = other._name;
+        this->_children = other._children;
+        this->_backward = other._backward;
+        other.ref = nullptr;
+        this->ref = this;
+        return *this;
+    }
     double value() const
     {
         return _value;
