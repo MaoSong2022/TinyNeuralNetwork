@@ -58,6 +58,20 @@ public:
         this->ref = this;
         return *this;
     }
+
+    Variable(Variable &&other)
+    {
+        this->_value = other._value;
+        this->_gradient = other._gradient;
+        this->_op = other._op;
+        this->_name = other._name;
+        this->_children = other._children;
+        this->_backward = other._backward;
+        this->ref = other.ref;
+        other.ref = nullptr;
+        this->ref = this;
+    }
+
     double value() const
     {
         return _value;
