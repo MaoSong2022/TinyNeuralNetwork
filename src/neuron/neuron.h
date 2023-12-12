@@ -34,4 +34,5 @@ public:
     }
 
     Variable forward(const std::vector<double> &inputs);
+    Variable forward(const std::vector<Variable> &variables);
 };
