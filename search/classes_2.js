@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['neuron_47',['Neuron',['../classNeuron.html',1,'']]]
+  ['neuron_60',['Neuron',['../classNeuron.html',1,'']]]
 ];

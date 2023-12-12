@@ -73,48 +73,67 @@ $(function() {
 <div class="contents">
 <a href="neuron_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;../variable/variable.h&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;random&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="classNeuron.html">    7</a></span>&#160;<span class="keyword">class </span><a class="code" href="classNeuron.html">Neuron</a></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    std::vector&lt;Variable&gt; _weights;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="classVariable.html">Variable</a> _bias;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    std::string _activate_function;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classNeuron.html#a035519579d2c02e7f11cdb04e5676a53">   15</a></span>&#160;    <a class="code" href="classNeuron.html#a035519579d2c02e7f11cdb04e5676a53">Neuron</a>(<span class="keywordtype">size_t</span> n_in, std::string activate_function = <span class="stringliteral">&quot;tanh&quot;</span>)</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        : _weights(std::vector&lt;<a class="code" href="classVariable.html">Variable</a>&gt;(n_in)), _bias(0.0),</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;          _activate_function(activate_function){};</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classNeuron.html#a779a758e2a6bd85c2d0d3b69910a759c">   19</a></span>&#160;    <span class="keyword">const</span> std::vector&lt;Variable&gt; &amp;<a class="code" href="classNeuron.html#a779a758e2a6bd85c2d0d3b69910a759c">weights</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">return</span> _weights;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classNeuron.html#a8c0f72e77bd36dd7a07185b7dc766f48">   24</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="classVariable.html">Variable</a> &amp;<a class="code" href="classNeuron.html#a8c0f72e77bd36dd7a07185b7dc766f48">bias</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordflow">return</span> _bias;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classNeuron.html#a90089f6c539621c35e4b0029b3e487c1">   29</a></span>&#160;    std::vector&lt;Variable&gt; <a class="code" href="classNeuron.html#a90089f6c539621c35e4b0029b3e487c1">parameters</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        std::vector&lt;Variable&gt; result = _weights;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        result.push_back(_bias);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;../variable/variable.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classNeuron.html">    9</a></span>&#160;<span class="keyword">class </span><a class="code" href="classNeuron.html">Neuron</a></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    std::vector&lt;Variable&gt; _weights;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="classVariable.html">Variable</a> _bias;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    std::string _activate_function;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classNeuron.html#a035519579d2c02e7f11cdb04e5676a53">   17</a></span>&#160;    <a class="code" href="classNeuron.html#a035519579d2c02e7f11cdb04e5676a53">Neuron</a>(<span class="keywordtype">size_t</span> n_in, std::string activate_function = <span class="stringliteral">&quot;tanh&quot;</span>)</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        : _weights(n_in), _activate_function(activate_function)</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordtype">unsigned</span> seed = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span><span class="keyword">&gt;</span>(</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            std::chrono::system_clock::now().time_since_epoch().count());</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        std::default_random_engine generator(seed);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        std::uniform_real_distribution&lt;double&gt; distribution(-1.0, 1.0);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        distribution.reset();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; n_in; i++)</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="comment">// _weights[i] = Variable(1.0 * i, 0.0, &quot;&quot;, &quot;weights&quot;);</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            _weights[i] = <a class="code" href="classVariable.html">Variable</a>(distribution(generator), 0.0, <span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;weights&quot;</span>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            _weights[i].set_ref(&amp;_weights[i]);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="comment">// _bias = Variable(1.0, 0.0, &quot;&quot;, &quot;bias&quot;);</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        _bias = <a class="code" href="classVariable.html">Variable</a>(distribution(generator), 0, <span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;bias&quot;</span>);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        _bias.<a class="code" href="classVariable.html#a617ad9f444e718ef427f9f0a0d9ddd93">set_ref</a>(&amp;_bias);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    }</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classVariable.html">Variable</a> <a class="code" href="classNeuron.html#a176b648b3fbae3169b644f1a06745987">forward</a>(<span class="keyword">const</span> std::vector&lt;double&gt; &amp;inputs);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;};</div>
-<div class="ttc" id="aclassNeuron_html"><div class="ttname"><a href="classNeuron.html">Neuron</a></div><div class="ttdef"><b>Definition:</b> neuron.h:8</div></div>
-<div class="ttc" id="aclassNeuron_html_a035519579d2c02e7f11cdb04e5676a53"><div class="ttname"><a href="classNeuron.html#a035519579d2c02e7f11cdb04e5676a53">Neuron::Neuron</a></div><div class="ttdeci">Neuron(size_t n_in, std::string activate_function=&quot;tanh&quot;)</div><div class="ttdef"><b>Definition:</b> neuron.h:15</div></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classNeuron.html#a779a758e2a6bd85c2d0d3b69910a759c">   36</a></span>&#160;    <span class="keyword">const</span> std::vector&lt;Variable&gt; &amp;<a class="code" href="classNeuron.html#a779a758e2a6bd85c2d0d3b69910a759c">weights</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">return</span> _weights;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classNeuron.html#a8c0f72e77bd36dd7a07185b7dc766f48">   41</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="classVariable.html">Variable</a> &amp;<a class="code" href="classNeuron.html#a8c0f72e77bd36dd7a07185b7dc766f48">bias</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">return</span> _bias;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classNeuron.html#a90089f6c539621c35e4b0029b3e487c1">   46</a></span>&#160;    std::vector&lt;Variable&gt; <a class="code" href="classNeuron.html#a90089f6c539621c35e4b0029b3e487c1">parameters</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        std::vector&lt;Variable&gt; result = _weights;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        result.push_back(_bias);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classVariable.html">Variable</a> <a class="code" href="classNeuron.html#a176b648b3fbae3169b644f1a06745987">forward</a>(<span class="keyword">const</span> std::vector&lt;double&gt; &amp;inputs);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="classVariable.html">Variable</a> <a class="code" href="classNeuron.html#a176b648b3fbae3169b644f1a06745987">forward</a>(<span class="keyword">const</span> std::vector&lt;Variable&gt; &amp;variables);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;};</div>
+<div class="ttc" id="aclassNeuron_html"><div class="ttname"><a href="classNeuron.html">Neuron</a></div><div class="ttdef"><b>Definition:</b> neuron.h:10</div></div>
+<div class="ttc" id="aclassNeuron_html_a035519579d2c02e7f11cdb04e5676a53"><div class="ttname"><a href="classNeuron.html#a035519579d2c02e7f11cdb04e5676a53">Neuron::Neuron</a></div><div class="ttdeci">Neuron(size_t n_in, std::string activate_function=&quot;tanh&quot;)</div><div class="ttdef"><b>Definition:</b> neuron.h:17</div></div>
 <div class="ttc" id="aclassNeuron_html_a176b648b3fbae3169b644f1a06745987"><div class="ttname"><a href="classNeuron.html#a176b648b3fbae3169b644f1a06745987">Neuron::forward</a></div><div class="ttdeci">Variable forward(const std::vector&lt; double &gt; &amp;inputs)</div><div class="ttdef"><b>Definition:</b> neuron.cc:4</div></div>
-<div class="ttc" id="aclassNeuron_html_a779a758e2a6bd85c2d0d3b69910a759c"><div class="ttname"><a href="classNeuron.html#a779a758e2a6bd85c2d0d3b69910a759c">Neuron::weights</a></div><div class="ttdeci">const std::vector&lt; Variable &gt; &amp; weights() const</div><div class="ttdef"><b>Definition:</b> neuron.h:19</div></div>
-<div class="ttc" id="aclassNeuron_html_a8c0f72e77bd36dd7a07185b7dc766f48"><div class="ttname"><a href="classNeuron.html#a8c0f72e77bd36dd7a07185b7dc766f48">Neuron::bias</a></div><div class="ttdeci">const Variable &amp; bias() const</div><div class="ttdef"><b>Definition:</b> neuron.h:24</div></div>
-<div class="ttc" id="aclassNeuron_html_a90089f6c539621c35e4b0029b3e487c1"><div class="ttname"><a href="classNeuron.html#a90089f6c539621c35e4b0029b3e487c1">Neuron::parameters</a></div><div class="ttdeci">std::vector&lt; Variable &gt; parameters() const</div><div class="ttdef"><b>Definition:</b> neuron.h:29</div></div>
+<div class="ttc" id="aclassNeuron_html_a779a758e2a6bd85c2d0d3b69910a759c"><div class="ttname"><a href="classNeuron.html#a779a758e2a6bd85c2d0d3b69910a759c">Neuron::weights</a></div><div class="ttdeci">const std::vector&lt; Variable &gt; &amp; weights() const</div><div class="ttdef"><b>Definition:</b> neuron.h:36</div></div>
+<div class="ttc" id="aclassNeuron_html_a8c0f72e77bd36dd7a07185b7dc766f48"><div class="ttname"><a href="classNeuron.html#a8c0f72e77bd36dd7a07185b7dc766f48">Neuron::bias</a></div><div class="ttdeci">const Variable &amp; bias() const</div><div class="ttdef"><b>Definition:</b> neuron.h:41</div></div>
+<div class="ttc" id="aclassNeuron_html_a90089f6c539621c35e4b0029b3e487c1"><div class="ttname"><a href="classNeuron.html#a90089f6c539621c35e4b0029b3e487c1">Neuron::parameters</a></div><div class="ttdeci">std::vector&lt; Variable &gt; parameters() const</div><div class="ttdef"><b>Definition:</b> neuron.h:46</div></div>
 <div class="ttc" id="aclassVariable_html"><div class="ttname"><a href="classVariable.html">Variable</a></div><div class="ttdef"><b>Definition:</b> variable.h:9</div></div>
+<div class="ttc" id="aclassVariable_html_a617ad9f444e718ef427f9f0a0d9ddd93"><div class="ttname"><a href="classVariable.html#a617ad9f444e718ef427f9f0a0d9ddd93">Variable::set_ref</a></div><div class="ttdeci">void set_ref(Variable *reference)</div><div class="ttdef"><b>Definition:</b> variable.h:120</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

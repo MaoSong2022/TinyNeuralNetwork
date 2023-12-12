@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['forward_66',['forward',['../classLayer.html#a59dd3efd931342e3eca2062a3b54708c',1,'Layer::forward()'],['../classMLP.html#a849439b55337c7b7f12a4a672a41b132',1,'MLP::forward()'],['../classNeuron.html#a176b648b3fbae3169b644f1a06745987',1,'Neuron::forward()']]]
+  ['dot_5fproduct_79',['dot_product',['../variable_8cc.html#a6cf389996299504b5664458e494b376c',1,'dot_product(const std::vector&lt; Variable &gt; &amp;a, const std::vector&lt; Variable &gt; &amp;b):&#160;variable.cc'],['../variable_8cc.html#a9b0c2d8d2001378918c6f2707688e720',1,'dot_product(const std::vector&lt; Variable &gt; &amp;a, const std::vector&lt; double &gt; &amp;b):&#160;variable.cc']]]
 ];

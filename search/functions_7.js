@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['neuron_72',['Neuron',['../classNeuron.html#a035519579d2c02e7f11cdb04e5676a53',1,'Neuron']]]
+  ['identity_84',['identity',['../classVariable.html#a6d50adc798a1c5dc8f46d32f029022eb',1,'Variable']]]
 ];

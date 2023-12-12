@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['update_5fgradient_89',['update_gradient',['../classVariable.html#a20a223c7898f68de41c19b1615e83a92',1,'Variable']]]
+  ['reference_100',['reference',['../classVariable.html#a5cc662f1d77e172c29b9bce16c7468c6',1,'Variable']]],
+  ['relu_101',['relu',['../classVariable.html#ac593b3e47f7b09196ac3f3d80e323c37',1,'Variable']]]
 ];

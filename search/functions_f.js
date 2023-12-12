@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['weights_92',['weights',['../classNeuron.html#a779a758e2a6bd85c2d0d3b69910a759c',1,'Neuron']]]
+  ['tan_113',['tan',['../classVariable.html#a83ac93b781dab1127abfd6b6b38265b2',1,'Variable']]],
+  ['tanh_114',['tanh',['../classVariable.html#a3fed8044e2e382d24fc712e60e0d6a46',1,'Variable']]]
 ];

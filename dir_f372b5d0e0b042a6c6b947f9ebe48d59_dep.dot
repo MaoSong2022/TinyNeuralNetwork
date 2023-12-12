@@ -7,5 +7,5 @@ digraph "/home/runner/work/TinyNeuralNetwork/TinyNeuralNetwork/src/loss" {
   dir_dd920bd76ff7422f03265981cd757b41 [shape=box label="variable" URL="dir_dd920bd76ff7422f03265981cd757b41.html"];
   dir_f372b5d0e0b042a6c6b947f9ebe48d59 [shape=box, label="loss", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_f372b5d0e0b042a6c6b947f9ebe48d59.html"];
   }
-  dir_f372b5d0e0b042a6c6b947f9ebe48d59->dir_dd920bd76ff7422f03265981cd757b41 [headlabel="1", labeldistance=1.5 headhref="dir_000005_000004.html"];
+  dir_f372b5d0e0b042a6c6b947f9ebe48d59->dir_dd920bd76ff7422f03265981cd757b41 [headlabel="1", labeldistance=1.5 headhref="dir_000002_000005.html"];
 }

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['relu_80',['relu',['../classVariable.html#ac593b3e47f7b09196ac3f3d80e323c37',1,'Variable']]]
+  ['name_90',['name',['../classVariable.html#a9844a2f7b2f91589a26e255bb93b8800',1,'Variable']]],
+  ['neuron_91',['Neuron',['../classNeuron.html#a035519579d2c02e7f11cdb04e5676a53',1,'Neuron']]]
 ];

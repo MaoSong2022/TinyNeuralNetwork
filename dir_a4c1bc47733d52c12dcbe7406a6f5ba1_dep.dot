@@ -7,5 +7,5 @@ digraph "/home/runner/work/TinyNeuralNetwork/TinyNeuralNetwork/src/neural_networ
   dir_8b1b1d3ff28e273b117e2ca277e8d05f [shape=box label="layer" URL="dir_8b1b1d3ff28e273b117e2ca277e8d05f.html"];
   dir_a4c1bc47733d52c12dcbe7406a6f5ba1 [shape=box, label="neural_network", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_a4c1bc47733d52c12dcbe7406a6f5ba1.html"];
   }
-  dir_a4c1bc47733d52c12dcbe7406a6f5ba1->dir_8b1b1d3ff28e273b117e2ca277e8d05f [headlabel="1", labeldistance=1.5 headhref="dir_000002_000001.html"];
+  dir_a4c1bc47733d52c12dcbe7406a6f5ba1->dir_8b1b1d3ff28e273b117e2ca277e8d05f [headlabel="1", labeldistance=1.5 headhref="dir_000003_000001.html"];
 }

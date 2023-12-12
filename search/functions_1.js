@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['children_62',['children',['../classVariable.html#a1bb91b914151b090e32ac82908ab369d',1,'Variable']]],
-  ['cos_63',['cos',['../classVariable.html#ad68ddc55f27b585563d36f8b6e8f08a0',1,'Variable']]],
-  ['cosh_64',['cosh',['../classVariable.html#a821c58022cc9e366c492a5b389e6a18d',1,'Variable']]]
+  ['backward_74',['backward',['../classVariable.html#a81bddf19ad61cf77760827cf04bc5745',1,'Variable']]],
+  ['bias_75',['bias',['../classNeuron.html#a8c0f72e77bd36dd7a07185b7dc766f48',1,'Neuron']]]
 ];
