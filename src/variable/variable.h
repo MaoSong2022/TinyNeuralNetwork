@@ -183,6 +183,10 @@ public:
     friend Variable operator-(const double other, const Variable &var);
     friend Variable operator*(const double other, const Variable &var);
     friend Variable operator/(const double other, const Variable &var);
+    friend Variable dot_product(const std::vector<Variable> &a,
+                                const std::vector<Variable> &b);
+    friend Variable dot_product(const std::vector<Variable> &a,
+                                const std::vector<double> &b);
 
     Variable pow(const double other) const;
     Variable exp() const;

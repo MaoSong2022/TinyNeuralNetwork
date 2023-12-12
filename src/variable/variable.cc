@@ -210,6 +210,69 @@ Variable operator/(const double other, const Variable &var)
     return var.pow(-1.0) * other;
 }
 
+Variable dot_product(const std::vector<Variable> &a,
+                     const std::vector<Variable> &b)
+{
+    if (a.size() != b.size())
+    {
+        throw std::invalid_argument("a and b should have same size");
+    }
+    const size_t size = a.size();
+    double result_val = 0;
+    for (size_t i = 0; i < size; i++)
+    {
+        result_val += a[i].value() * b[i].value();
+    }
+    Variable result;
+    result._value = result_val;
+    result._op = "dot_product";
+    result._name =
+        fmt::format("Variable({}, {})", result.value(), result.gradient());
+    result.ref = nullptr;
+    result._children = std::vector<Variable>{a.begin(), a.end()};
+    result._children.insert(result._children.end(), b.begin(), b.end());
+    result._backward = [size](Variable *result) {
+        for (size_t i = 0; i < size; i++)
+        {
+            result->_children[i].update_gradient(
+                result->_gradient * result->_children[i + size].value());
+            result->_children[i + size].update_gradient(
+                result->_gradient * result->_children[i].value());
+        }
+    };
+    return result;
+}
+
+
+Variable dot_product(const std::vector<Variable> &a,
+                     const std::vector<double> &b)
+{
+    if (a.size() != b.size())
+    {
+        throw std::invalid_argument("a and b should have same size");
+    }
+    const size_t size = a.size();
+    double result_val = 0;
+    for (size_t i = 0; i < size; i++)
+    {
+        result_val += a[i].value() * b[i];
+    }
+    Variable result;
+    result._value = result_val;
+    result._op = "dot_product";
+    result._name =
+        fmt::format("Variable({}, {})", result.value(), result.gradient());
+    result.ref = nullptr;
+    result._children = a;
+    result._backward = [size, b](Variable *result) {
+        for (size_t i = 0; i < size; i++)
+        {
+            result->_children[i].update_gradient(result->_gradient * b[i]);
+        }
+    };
+    return result;
+}
+
 Variable Variable::pow(const double other) const
 {
     if (this->value() == 0 && other < 0)
