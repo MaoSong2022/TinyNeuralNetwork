@@ -113,6 +113,8 @@ int main()
         }
         Variable loss = MSELoss(predictions, targets);
 
+        std::cout << "Loss: " << loss << std::endl;
+
         // zero gradient
         for (auto &parameter : mlp.parameters())
         {
