@@ -1,31 +1,76 @@
 #include "neuron.h"
 #include <catch2/catch.hpp>
-#include <stdlib.h>
-#include <time.h>
 
 TEST_CASE("Test neuron", "[Neuron]")
 {
     /* initialize random seed: */
-    srand(static_cast<unsigned int>(time(nullptr)));
-
     size_t n_in = 10;
     Neuron neuron(n_in);
-    std::vector<double> input(n_in);
-    for (std::vector<double>::size_type i = 0; i < n_in; i++)
+
+    SECTION("Test normal inputs")
     {
-        input[i] = rand() % 3 - 1.0;
+        std::vector<double> input(n_in);
+        for (std::vector<double>::size_type i = 0; i < n_in; i++)
+        {
+            input[i] = 1.0;
+        }
+
+        Variable result = neuron.forward(input);
+        REQUIRE(result.gradient() == 0.0);
+        result.set_gradient(1.0);
+        REQUIRE(result.gradient() == 1.0);
+        REQUIRE(result.children().size() == 1);
+        const auto &child = result.children()[0];
+        REQUIRE(child.gradient() == 0.0);
+        REQUIRE(child.children().size() == 2);
+
+        result.backward();
+        REQUIRE(child.gradient() ==
+                Approx(1.0 - result.value() * result.value()));
+        const std::vector<Variable> &parameters = neuron.parameters();
+        REQUIRE(parameters.size() == n_in + 1);
+        for (std::vector<double>::size_type i = 0; i < n_in; i++)
+        {
+            REQUIRE(parameters[i].gradient() ==
+                    Approx(child.gradient() * input[i]));
+        }
+        REQUIRE(parameters[n_in].gradient() == Approx(child.gradient()));
     }
 
-    Variable result = neuron.forward(input);
-    REQUIRE(result.value() == 0.0);
-    result.set_gradient(1.0);
-    result.backward();
-    REQUIRE(result.gradient() == 1.0);
-    const std::vector<Variable> &parameters = neuron.parameters();
-    REQUIRE(parameters.size() == n_in + 1);
-    for (std::vector<double>::size_type i = 0; i < n_in; i++)
+    SECTION("test variable")
     {
-        REQUIRE(parameters[i].gradient() == input[i]);
+        std::vector<Variable> input(n_in);
+        for (size_t i = 0; i < n_in; i++)
+        {
+            input[i] = Variable(rand() % 3 - 1.0);
+        }
+
+        Variable result = neuron.forward(input);
+        REQUIRE(result.gradient() == 0.0);
+        result.set_gradient(1.0);
+        REQUIRE(result.gradient() == 1.0);
+        REQUIRE(result.children().size() == 1);
+        const auto &child = result.children()[0];
+        REQUIRE(child.gradient() == 0.0);
+        REQUIRE(child.children().size() == 2);
+        const auto &grandson = child.children()[0];
+        REQUIRE(grandson.children().size() == 2 * n_in);
+        result.backward();
+        REQUIRE(child.gradient() ==
+                Approx(1.0 - result.value() * result.value()));
+        const std::vector<Variable> &parameters = neuron.parameters();
+        REQUIRE(parameters.size() == n_in + 1);
+        for (size_t i = 0; i < n_in; i++)
+        {
+            REQUIRE(parameters[i].gradient() ==
+                    Approx(child.gradient() * input[i].value()));
+        }
+        REQUIRE(parameters[n_in].gradient() == Approx(child.gradient()));
+        for (size_t i = 0; i < n_in; i++)
+        {
+            REQUIRE(grandson.children()[i + n_in].reference() == &input[i]);
+            REQUIRE(input[i].gradient() ==
+                    Approx(child.gradient() * parameters[i].value()));
+        }
     }
-    REQUIRE(parameters[n_in].gradient() == 1.0);
 }
