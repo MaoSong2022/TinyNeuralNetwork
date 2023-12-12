@@ -173,6 +173,7 @@ public:
     Variable operator*(const Variable &other);
     Variable operator/(const Variable &other);
     Variable operator-() const;
+    Variable identity() const;
 
     Variable operator+(const double other) const;
     Variable operator-(const double other) const;

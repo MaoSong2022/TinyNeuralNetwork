@@ -103,6 +103,21 @@ Variable Variable::operator-() const
     return result;
 }
 
+Variable Variable::identity() const
+{
+    Variable result;
+    result._value = _value;
+    result._op = "identity";
+    result._name =
+        fmt::format("Variable({}, {})", result.value(), result.gradient());
+    result.ref = nullptr;
+    result._children = std::vector<Variable>{*this};
+    result._backward = [](Variable *result) {
+        result->_children[0].update_gradient(result->_gradient);
+    };
+    return result;
+}
+
 
 Variable Variable::operator+(const double other) const
 {
