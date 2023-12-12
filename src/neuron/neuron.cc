@@ -7,6 +7,12 @@ Variable Neuron::forward(const std::vector<double> &inputs)
     {
         throw std::runtime_error("invalid number of inputs");
     }
+    Variable result = dot_product(_weights, inputs) + _bias;
+    result.set_ref(nullptr);
+
+    return result.activate(_activate_function);
+}
+
 
 Variable Neuron::forward(const std::vector<Variable> &variables)
 {
