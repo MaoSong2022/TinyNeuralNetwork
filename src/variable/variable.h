@@ -23,6 +23,16 @@ public:
                       std::string name = "")
         : _value(value), _gradient(gradient), _op(op), _name(name), ref(this){};
 
+    Variable(const Variable &other)
+    {
+        this->_value = other._value;
+        this->_gradient = other._gradient;
+        this->_op = other._op;
+        this->_name = other._name;
+        this->_children = other._children;
+        this->_backward = other._backward;
+        this->ref = other.ref;
+    }
     double value() const
     {
         return _value;
