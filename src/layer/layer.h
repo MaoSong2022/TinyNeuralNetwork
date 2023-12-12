@@ -21,6 +21,5 @@ public:
     std::vector<Variable> parameters() const;
 
     std::vector<Variable> forward(const std::vector<double> &inputs);
+    std::vector<Variable> forward(const std::vector<Variable> &variables);
 };
-
-std::vector<double> value(const std::vector<Variable> &variables);

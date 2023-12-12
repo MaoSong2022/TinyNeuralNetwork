@@ -24,19 +24,12 @@ std::vector<Variable> Layer::forward(const std::vector<double> &inputs)
 }
 
 
-/**
- * Generates a vector of values of the input variables.
- *
- * @param variables the vector of Variable objects to process
- *
- * @return a vector of double values generated from the variables
- */
-std::vector<double> value(const std::vector<Variable> &variables)
+std::vector<Variable> Layer::forward(const std::vector<Variable> &variables)
 {
-    std::vector<double> result;
-    for (const auto &variable : variables)
+    std::vector<Variable> result;
+    for (auto &neuron : _neurons)
     {
-        result.push_back(variable.value());
+        result.push_back(neuron.forward(variables));
     }
     return result;
 }
