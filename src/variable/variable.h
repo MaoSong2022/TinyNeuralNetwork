@@ -77,9 +77,29 @@ public:
         return _value;
     }
 
+    const std::string &name() const
+    {
+        return _name;
+    }
+
+    void set_name(const std::string &name)
+    {
+        _name = name;
+    }
+
     void set_value(double value)
     {
         _value = value;
+    }
+
+    void set_op(const std::string &op)
+    {
+        _op = op;
+    }
+
+    void set_backward(std::function<void(Variable *)> backward)
+    {
+        _backward = backward;
     }
 
     double gradient() const
@@ -92,9 +112,29 @@ public:
         _gradient = gradient;
     }
 
+    Variable *reference() const
+    {
+        return ref;
+    }
+
+    void set_ref(Variable *reference)
+    {
+        this->ref = reference;
+    }
+
     const std::vector<Variable> &children() const
     {
         return _children;
+    }
+
+    std::vector<Variable> &mutable_children()
+    {
+        return _children;
+    }
+
+    void set_children(const std::vector<Variable> &children)
+    {
+        _children = children;
     }
 
     void backward()
