@@ -165,6 +165,8 @@ public:
         _value -= lr * _gradient;
     }
 
+    Variable activate(std::string activate_function);
+
 public:
     friend std::ostream &operator<<(std::ostream &os, const Variable &var);
 

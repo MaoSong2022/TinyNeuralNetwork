@@ -460,3 +460,25 @@ Variable Variable::sigmoid() const
     };
     return result;
 }
+
+
+Variable Variable::activate(std::string activate_function)
+{
+    if (activate_function == "relu")
+    {
+        return this->relu();
+    }
+    if (activate_function == "sigmoid")
+    {
+        return this->sigmoid();
+    }
+    if (activate_function == "tanh")
+    {
+        return this->tanh();
+    }
+    if (activate_function == "identity")
+    {
+        return this->identity();
+    }
+    throw std::runtime_error("unknown activation function");
+}
