@@ -50,4 +50,59 @@ TEST_CASE("Test active functions", "[Variable-Active-Function]")
         REQUIRE(e.gradient() == 1.0);
         REQUIRE(a.gradient() == 0.10499358540350662);
     }
+
+    SECTION("Test activate tanh")
+    {
+        Variable f = a.activate("tanh");
+        REQUIRE(f.value() == 0.9640275800758169);
+        REQUIRE(f.children().size() == 1);
+        f.set_gradient(1.0);
+        f.backward();
+        REQUIRE(f.gradient() == 1.0);
+        REQUIRE(a.gradient() == 0.07065082485316443);
+    }
+
+    SECTION("Test activate sigmoid")
+    {
+        Variable g = a.activate("sigmoid");
+        REQUIRE(g.value() == 0.8807970779778823);
+        REQUIRE(g.children().size() == 1);
+        g.set_gradient(1.0);
+        g.backward();
+        REQUIRE(g.gradient() == 1.0);
+        REQUIRE(a.gradient() == 0.10499358540350662);
+    }
+
+    SECTION("Test activate relu")
+    {
+        Variable h = a.activate("relu");
+        REQUIRE(h.value() == 2.0);
+        REQUIRE(h.children().size() == 1);
+        h.set_gradient(1.0);
+        h.backward();
+        REQUIRE(h.gradient() == 1.0);
+        REQUIRE(a.gradient() == 1.0);
+    }
+
+    SECTION("Test activate identity")
+    {
+        Variable h = a.activate("identity");
+        REQUIRE(h.value() == 2.0);
+        REQUIRE(h.children().size() == 1);
+        h.set_gradient(1.0);
+        h.backward();
+        REQUIRE(h.gradient() == 1.0);
+        REQUIRE(a.gradient() == 1.0);
+    }
+
+    SECTION("Test composition")
+    {
+        Variable i = a.tanh().tanh();
+        REQUIRE(i.value() == Approx(0.7460679984455996));
+        REQUIRE(i.children().size() == 1);
+        i.set_gradient(1.0);
+        i.backward();
+        REQUIRE(i.gradient() == 1.0);
+        REQUIRE(a.gradient() == 0.031325342296270944);
+    }
 }
