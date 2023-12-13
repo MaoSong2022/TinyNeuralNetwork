@@ -15,7 +15,7 @@ TEST_CASE("Test variable basic", "[Variable]")
         REQUIRE(b.op() == "");
         REQUIRE(b.name() == "a");
         REQUIRE(b.children().size() == 0);
-        REQUIRE(b.ref == &a);
+        REQUIRE(b.reference() == &a);
     }
 
     SECTION("Test move constructor")
@@ -26,7 +26,7 @@ TEST_CASE("Test variable basic", "[Variable]")
         REQUIRE(b.op() == "");
         REQUIRE(b.name() == "b");
         REQUIRE(b.children().size() == 0);
-        REQUIRE(b.ref == &b);
+        REQUIRE(b.reference() == &b);
     }
 
     SECTION("Test copy assignment")
@@ -38,7 +38,7 @@ TEST_CASE("Test variable basic", "[Variable]")
         REQUIRE(b.op() == "");
         REQUIRE(b.name() == "a");
         REQUIRE(b.children().size() == 0);
-        REQUIRE(b.ref == &a);
+        REQUIRE(b.reference() == &a);
     }
 
     SECTION("Test move assignment")
@@ -50,7 +50,7 @@ TEST_CASE("Test variable basic", "[Variable]")
         REQUIRE(b.op() == "");
         REQUIRE(b.name() == "b");
         REQUIRE(b.children().size() == 0);
-        REQUIRE(b.ref == &b);
+        REQUIRE(b.reference() == &b);
     }
 
     SECTION("Test zero gradient")
@@ -58,7 +58,7 @@ TEST_CASE("Test variable basic", "[Variable]")
         REQUIRE(a.gradient() == 0.0);
         a.set_gradient(1.0);
         REQUIRE(a.gradient() == 1.0);
-        a.zero_gradient();
+        a.zero_grad();
         REQUIRE(a.gradient() == 0.0);
     }
 
