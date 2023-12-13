@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['mlp_2ecc_67',['mlp.cc',['../mlp_8cc.html',1,'']]],
-  ['mlp_2eh_68',['mlp.h',['../mlp_8h.html',1,'']]]
+  ['layer_2ecc_66',['layer.cc',['../layer_8cc.html',1,'']]],
+  ['layer_2eh_67',['layer.h',['../layer_8h.html',1,'']]],
+  ['loss_2ecc_68',['loss.cc',['../loss_8cc.html',1,'']]],
+  ['loss_2eh_69',['loss.h',['../loss_8h.html',1,'']]]
 ];

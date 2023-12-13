@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mlp_59',['MLP',['../classMLP.html',1,'']]]
+  ['mlp_61',['MLP',['../classMLP.html',1,'']]]
 ];
