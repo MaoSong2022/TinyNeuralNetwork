@@ -92,6 +92,11 @@ public:
         _value = value;
     }
 
+    const std::string &op() const
+    {
+        return _op;
+    }
+
     void set_op(const std::string &op)
     {
         _op = op;
