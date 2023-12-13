@@ -26,7 +26,8 @@ GENERATE_LATEX          = NO
 # Configuration options related to the input files
 #---------------------------------------------------------------------------
 INPUT                  =    ../src \
-INPUT                       ../include
+INPUT                       ../include\
+INPUT                       ./intro.md
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.c \
                          *.cc \
@@ -35,3 +36,9 @@ FILE_PATTERNS          = *.c \
                          *.hpp \
                          *.md \
                          *.txt
+
+HTML_HEADER = ./misc/header.html
+HTML_FOOTER = ./misc/footer.html
+HTML_EXTRA_STYLESHEET = ./misc/doxygen.css
+GENERATE_TREEVIEW = YES
+DISABLE_INDEX = YES
