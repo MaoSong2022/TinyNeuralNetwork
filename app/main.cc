@@ -16,7 +16,7 @@
 using json = nlohmann::json;
 namespace fs = std::filesystem;
 
-int main()
+int main(int argc, char *argv[])
 {
     Variable a(2.0);
     Variable b(3.0);

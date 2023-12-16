@@ -137,7 +137,10 @@
         "stop_token": "cpp",
         "thread": "cpp",
         "cinttypes": "cpp",
-        "ranges": "cpp"
+        "ranges": "cpp",
+        "csignal": "cpp",
+        "future": "cpp",
+        "filesystem": "cpp"
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
@@ -248,6 +251,8 @@
     "C_Cpp_Runner.warningsAsError": false,
     "workbench.editor.empty.hint": "hidden",
     "cSpell.words": [
-        "relu"
+        "CXXOPTS",
+        "relu",
+        "SPDLOG"
     ]
 }
