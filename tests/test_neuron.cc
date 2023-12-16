@@ -45,52 +45,49 @@ TEST_CASE("Test neuron", "[Neuron]")
         REQUIRE(parameters[n_in].gradient() == Approx(child.gradient()));
     }
 
-    // SECTION("test variable")
-    // {
-    //     std::vector<Variable> input(n_in);
-    //     for (size_t i = 0; i < n_in; i++)
-    //     {
-    //         input[i] = Variable(rand() % 3 - 1.0);
-    //         REQUIRE(input[i].reference() == &input[i]);
-    //     }
+    SECTION("test variable")
+    {
+        std::vector<Variable> input(n_in);
+        for (size_t i = 0; i < n_in; i++)
+        {
+            input[i] = Variable(rand() % 3 - 1.0);
+            REQUIRE(input[i].reference() == &input[i]);
+        }
 
-    //     Variable result = neuron.forward(input);
-    //     REQUIRE(result.gradient() == 0.0);
-    //     result.set_gradient(1.0);
-    //     REQUIRE(result.gradient() == 1.0);
-    //     REQUIRE(result.children().size() == 1);
-    //     const auto &child = result.children()[0];
-    //     REQUIRE(child.gradient() == 0.0);
-    //     REQUIRE(child.children().size() == 2);
-    //     const auto &grandson = child.children()[0];
-    //     REQUIRE(grandson.children().size() == 2 * n_in);
-    //     result.backward();
-    //     REQUIRE(child.gradient() ==
-    //             Approx(1.0 - result.value() * result.value()));
-    //     std::vector<Variable> parameters = neuron.parameters();
-    //     REQUIRE(parameters.size() == n_in + 1);
-    //     for (size_t i = 0; i < n_in; i++)
-    //     {
-    //         REQUIRE(parameters[i].reference() == &neuron.weights()[i]);
-    //         REQUIRE(parameters[i].value() ==
-    //                 Approx(neuron.weights()[i].value()));
-    //         REQUIRE(parameters[i + n_in].reference() == &input[i]);
-    //         REQUIRE(parameters[i + n_in].value() == Approx(input[i].value()));
-    //     }
-    //     for (size_t i = 0; i < n_in; i++)
-    //     {
-    //         std::cout << "child = " << child << std::endl;
-    //         std::cout << "input = " << input[i] << std::endl;
-    //         std::cout << "parameters[i] = " << parameters[i] << std::endl;
-    //         REQUIRE(parameters[i].gradient() ==
-    //                 Approx(child.gradient() * input[i].value()));
-    //     }
-    //     REQUIRE(parameters[n_in].gradient() == Approx(child.gradient()));
-    //     for (size_t i = 0; i < n_in; i++)
-    //     {
-    //         REQUIRE(grandson.children()[i + n_in].reference() == &input[i]);
-    //         REQUIRE(input[i].gradient() ==
-    //                 Approx(child.gradient() * parameters[i].value()));
-    //     }
-    // }
+        Variable result = neuron.forward(input);
+        REQUIRE(result.gradient() == 0.0);
+        result.set_gradient(1.0);
+        REQUIRE(result.gradient() == 1.0);
+        REQUIRE(result.children().size() == 1);
+        const auto &child = result.children()[0];
+        REQUIRE(child.gradient() == 0.0);
+        REQUIRE(child.children().size() == 2);
+        const auto &grandson = child.children()[0];
+        REQUIRE(grandson.children().size() == 2 * n_in);
+        result.backward();
+        REQUIRE(child.gradient() ==
+                Approx(1.0 - result.value() * result.value()));
+        std::vector<Variable> parameters = neuron.parameters();
+        REQUIRE(parameters.size() == n_in + 1);
+        for (size_t i = 0; i < n_in; i++)
+        {
+            REQUIRE(parameters[i].reference() == &neuron.weights()[i]);
+            REQUIRE(parameters[i].value() ==
+                    Approx(neuron.weights()[i].value()));
+            REQUIRE(parameters[i + n_in].reference() == &input[i]);
+            REQUIRE(parameters[i + n_in].value() == Approx(input[i].value()));
+        }
+        for (size_t i = 0; i < n_in; i++)
+        {
+            REQUIRE(parameters[i].gradient() ==
+                    Approx(child.gradient() * input[i].value()));
+        }
+        REQUIRE(parameters[n_in].gradient() == Approx(child.gradient()));
+        for (size_t i = 0; i < n_in; i++)
+        {
+            REQUIRE(grandson.children()[i + n_in].reference() == &input[i]);
+            REQUIRE(input[i].gradient() ==
+                    Approx(child.gradient() * parameters[i].value()));
+        }
+    }
 }

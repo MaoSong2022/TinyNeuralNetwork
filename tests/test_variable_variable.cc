@@ -83,7 +83,6 @@ TEST_CASE("Test variable-variable operations", "[Variable-Variable]")
         REQUIRE(c.children().size() == 6);
         for (size_t i = 0; i < 3; ++i)
         {
-            std::cout << "c[" << i << "] = " << c.children()[i] << std::endl;
             REQUIRE(c.children()[i].reference() == &a);
             REQUIRE(c.children()[i + 3].reference() == &b);
         }
