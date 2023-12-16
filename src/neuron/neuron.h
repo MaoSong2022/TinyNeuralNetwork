@@ -43,12 +43,7 @@ public:
         return _bias;
     }
 
-    std::vector<Variable> parameters() const
-    {
-        std::vector<Variable> result = _weights;
-        result.push_back(_bias);
-        return result;
-    }
+    std::vector<Variable> parameters() const;
 
     Variable forward(const std::vector<double> &inputs);
     Variable forward(const std::vector<Variable> &variables);
