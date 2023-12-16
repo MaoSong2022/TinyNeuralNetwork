@@ -24,14 +24,70 @@ public:
         distribution.reset();
         for (size_t i = 0; i < n_in; i++)
         {
-            // _weights[i] = Variable(1.0 * i, 0.0, "", "weights");
             _weights[i] = Variable(distribution(generator), 0.0, "", "weights");
             _weights[i].set_ref(&_weights[i]);
         }
-        // _bias = Variable(1.0, 0.0, "", "bias");
         _bias = Variable(distribution(generator), 0, "", "bias");
         _bias.set_ref(&_bias);
     }
+
+    Neuron(const Neuron &other)
+        : _weights(other._weights), _bias(other._bias),
+          _activate_function(other._activate_function){};
+
+    Neuron &operator=(const Neuron &other)
+    {
+        _weights = other._weights;
+        _bias = other._bias;
+        _activate_function = other._activate_function;
+        return *this;
+    }
+
+    Neuron(Neuron &&other) noexcept
+        : _weights(other._weights), _bias(other._bias),
+          _activate_function(other._activate_function)
+    {
+        for (auto &weight : other._weights)
+        {
+            weight.set_ref(nullptr);
+        }
+        other._weights.clear();
+        other._bias.set_ref(nullptr);
+        for (auto &weight : _weights)
+        {
+            weight.set_ref(&weight);
+        }
+        _bias.set_ref(&_bias);
+    }
+
+    Neuron &operator=(Neuron &&other) noexcept
+    {
+        _weights = other._weights;
+        _bias = other._bias;
+        _activate_function = other._activate_function;
+        for (auto &weight : other._weights)
+        {
+            weight.set_ref(nullptr);
+        }
+        other._weights.clear();
+        other._bias.set_ref(nullptr);
+
+        for (auto &weight : _weights)
+        {
+            weight.set_ref(&weight);
+        }
+        _bias.set_ref(&_bias);
+        return *this;
+    }
+
+    ~Neuron()
+    {
+        for (auto &weight : _weights)
+        {
+            weight.set_ref(nullptr);
+        }
+        _bias.set_ref(nullptr);
+    };
 
     const std::vector<Variable> &weights() const
     {
