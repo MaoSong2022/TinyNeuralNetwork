@@ -1,5 +1,6 @@
 if(ENABLE_TESTING)
     set(TEST_SOURCES
+        "${CMAKE_CURRENT_SOURCE_DIR}/test_variable.cc"
         "${CMAKE_CURRENT_SOURCE_DIR}/test_variable_variable.cc"
         "${CMAKE_CURRENT_SOURCE_DIR}/test_variable_constant.cc"
         "${CMAKE_CURRENT_SOURCE_DIR}/test_constant_variable.cc"
@@ -7,6 +8,7 @@ if(ENABLE_TESTING)
         "${CMAKE_CURRENT_SOURCE_DIR}/test_active_function.cc"
         "${CMAKE_CURRENT_SOURCE_DIR}/test_computational_graph.cc"
         "${CMAKE_CURRENT_SOURCE_DIR}/test_neuron.cc"
+        "${CMAKE_CURRENT_SOURCE_DIR}/test_layer.cc"
         )
     set(TEST_HEADERS "")
 

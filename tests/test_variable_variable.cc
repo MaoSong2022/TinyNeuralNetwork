@@ -73,4 +73,24 @@ TEST_CASE("Test variable-variable operations", "[Variable-Variable]")
         REQUIRE(h.gradient() == 1.0);
         REQUIRE(a.gradient() == -1.0);
     }
+
+    SECTION("Test dot product")
+    {
+        std::vector<Variable> a_vec{a, a, a};
+        std::vector<Variable> b_vec{b, b, b};
+        Variable c = dot_product(a_vec, b_vec);
+        REQUIRE(c.value() == 18.0);
+        REQUIRE(c.children().size() == 6);
+        for (size_t i = 0; i < 3; ++i)
+        {
+            std::cout << "c[" << i << "] = " << c.children()[i] << std::endl;
+            REQUIRE(c.children()[i].reference() == &a);
+            REQUIRE(c.children()[i + 3].reference() == &b);
+        }
+        c.set_gradient(1.0);
+        c.backward();
+        REQUIRE(c.gradient() == 1.0);
+        REQUIRE(a.gradient() == 9.0);
+        REQUIRE(b.gradient() == 6.0);
+    }
 }
