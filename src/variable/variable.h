@@ -24,15 +24,9 @@ public:
         : _value(value), _gradient(gradient), _op(op), _name(name), ref(this){};
 
     Variable(const Variable &other)
-    {
-        this->_value = other._value;
-        this->_gradient = other._gradient;
-        this->_op = other._op;
-        this->_name = other._name;
-        this->_children = other._children;
-        this->_backward = other._backward;
-        this->ref = other.ref;
-    }
+        : _value(other._value), _gradient(other._gradient), _op(other._op),
+          _name(other._name), ref(other.ref), _children(other._children),
+          _backward(other._backward){};
 
     Variable &operator=(const Variable &other)
     {
@@ -46,7 +40,7 @@ public:
         return *this;
     }
 
-    Variable &operator=(Variable &&other)
+    Variable &operator=(Variable &&other) noexcept
     {
         this->_value = other._value;
         this->_gradient = other._gradient;
@@ -59,18 +53,19 @@ public:
         return *this;
     }
 
-    Variable(Variable &&other)
+    Variable(Variable &&other) noexcept
+        : _value(other._value), _gradient(other._gradient), _op(other._op),
+          _name(other._name), ref(other.ref), _children(other._children),
+          _backward(other._backward)
     {
-        this->_value = other._value;
-        this->_gradient = other._gradient;
-        this->_op = other._op;
-        this->_name = other._name;
-        this->_children = other._children;
-        this->_backward = other._backward;
-        this->ref = other.ref;
         other.ref = nullptr;
         this->ref = this;
-    }
+    };
+
+    ~Variable()
+    {
+        set_ref(nullptr);
+    };
 
     double value() const
     {
