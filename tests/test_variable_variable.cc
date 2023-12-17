@@ -76,20 +76,39 @@ TEST_CASE("Test variable-variable operations", "[Variable-Variable]")
 
     SECTION("Test dot product")
     {
-        std::vector<Variable> a_vec{a, a, a};
-        std::vector<Variable> b_vec{b, b, b};
+        std::vector<Variable> a_vec(3);
+        for (size_t i = 0; i < 3; ++i)
+        {
+            a_vec[i] =
+                Variable(2.0, 0.0, "", "a_vec[" + std::to_string(i) + "]");
+        }
+        std::vector<Variable> b_vec(3);
+        for (size_t i = 0; i < 3; ++i)
+        {
+            b_vec[i] =
+                Variable(3.0, 0.0, "", "b_vec[" + std::to_string(i) + "]");
+        }
+        for (size_t i = 0; i < 3; ++i)
+        {
+            REQUIRE(a_vec[i].reference() == &a_vec[i]);
+            REQUIRE(b_vec[i].reference() == &b_vec[i]);
+        }
         Variable c = dot_product(a_vec, b_vec);
         REQUIRE(c.value() == 18.0);
         REQUIRE(c.children().size() == 6);
+
         for (size_t i = 0; i < 3; ++i)
         {
-            REQUIRE(c.children()[i].reference() == &a);
-            REQUIRE(c.children()[i + 3].reference() == &b);
+            REQUIRE(c.children()[i].reference() == &a_vec[i]);
+            REQUIRE(c.children()[i + 3].reference() == &b_vec[i]);
         }
         c.set_gradient(1.0);
         c.backward();
         REQUIRE(c.gradient() == 1.0);
-        REQUIRE(a.gradient() == 9.0);
-        REQUIRE(b.gradient() == 6.0);
+        for (size_t i = 0; i < 3; ++i)
+        {
+            REQUIRE(c.children()[i].gradient() == Approx(3.0));
+            REQUIRE(c.children()[i + 3].gradient() == Approx(2.0));
+        }
     }
 }
