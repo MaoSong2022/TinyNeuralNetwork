@@ -229,8 +229,12 @@ Variable dot_product(const std::vector<Variable> &a,
     result._name =
         fmt::format("Variable({}, {})", result.value(), result.gradient());
     result.ref = nullptr;
-    result._children = std::vector<Variable>{a.begin(), a.end()};
-    result._children.insert(result._children.end(), b.begin(), b.end());
+    result._children.resize(2 * size);
+    for (size_t i = 0; i < size; i++)
+    {
+        result._children[i] = a[i];
+        result._children[i + size] = b[i];
+    }
     result._backward = [size](Variable *result) {
         for (size_t i = 0; i < size; i++)
         {
