@@ -4,11 +4,12 @@
 std::vector<Variable> MLP::parameters() const
 {
     std::vector<Variable> result;
-    for (const auto &layer : _layers)
+    for (size_t i = 0; i < _layers.size(); i++)
     {
-        result.insert(result.end(),
-                      layer.parameters().begin(),
-                      layer.parameters().end());
+        for (size_t j = 0; j < _layers[i].parameters().size(); j++)
+        {
+            result.push_back(_layers[i].parameters()[j]);
+        }
     }
     return result;
 }
