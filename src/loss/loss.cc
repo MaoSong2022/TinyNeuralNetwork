@@ -1,7 +1,8 @@
 #include "loss.h"
 
 
-Variable MSELoss(std::vector<Variable> predictions, std::vector<double> targets)
+Variable MSELoss(const std::vector<Variable> &predictions,
+                 const std::vector<double> &targets)
 {
     size_t n = predictions.size();
     double value = 0;
@@ -12,10 +13,8 @@ Variable MSELoss(std::vector<Variable> predictions, std::vector<double> targets)
     }
     value /= static_cast<double>(n);
 
-    Variable result;
-    result.set_value(value);
+    Variable result(value, 0.0, "", "MSELoss");
     result.set_children(predictions);
-    result.set_op("MSELoss");
     result.set_backward([targets](Variable *result) {
         for (size_t i = 0; i < result->children().size(); i++)
         {

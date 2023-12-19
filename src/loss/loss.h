@@ -3,5 +3,5 @@
 #include "../variable/variable.h"
 
 
-Variable MSELoss(std::vector<Variable> predictions,
-                 std::vector<double> targets);
+Variable MSELoss(const std::vector<Variable> &predictions,
+                 const std::vector<double> &targets);
