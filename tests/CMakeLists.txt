@@ -9,12 +9,14 @@ if(ENABLE_TESTING)
         "${CMAKE_CURRENT_SOURCE_DIR}/test_computational_graph.cc"
         "${CMAKE_CURRENT_SOURCE_DIR}/test_neuron.cc"
         "${CMAKE_CURRENT_SOURCE_DIR}/test_layer.cc"
+        "${CMAKE_CURRENT_SOURCE_DIR}/test_loss.cc"
+        "${CMAKE_CURRENT_SOURCE_DIR}/test_mlp.cc"
         )
     set(TEST_HEADERS "")
 
     add_executable(${UNIT_TEST_NAME} ${TEST_SOURCES} ${TEST_HEADERS})
 
-    target_link_libraries(${UNIT_TEST_NAME} PUBLIC ${VARIABLE} ${NEURON} ${LAYER} ${NEURAL_NETWORK} )
+    target_link_libraries(${UNIT_TEST_NAME} PUBLIC ${VARIABLE} ${NEURON} ${LAYER} ${NEURAL_NETWORK} ${LOSS})
     target_link_libraries(${UNIT_TEST_NAME} PRIVATE Catch2::Catch2)
 
     target_set_warnings(
