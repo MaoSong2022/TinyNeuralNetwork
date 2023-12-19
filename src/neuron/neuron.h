@@ -25,10 +25,8 @@ public:
         for (size_t i = 0; i < n_in; i++)
         {
             _weights[i] = Variable(distribution(generator), 0.0, "", "weights");
-            _weights[i].set_ref(&_weights[i]);
         }
         _bias = Variable(distribution(generator), 0, "", "bias");
-        _bias.set_ref(&_bias);
     }
 
     Neuron(const Neuron &other)
