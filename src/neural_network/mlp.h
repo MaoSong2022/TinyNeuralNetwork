@@ -14,12 +14,18 @@ private:
 public:
     MLP(size_t n_in, std::vector<size_t> n_outs) : _n_in(n_in), _n_outs(n_outs)
     {
+        _layers.reserve(n_outs.size());
         size_t n_prev = n_in;
         for (size_t n_out : n_outs)
         {
             _layers.push_back(Layer(n_prev, n_out));
             n_prev = n_out;
         }
+    }
+
+    const std::vector<Layer> &layers() const
+    {
+        return _layers;
     }
 
     std::vector<Variable> parameters() const;
