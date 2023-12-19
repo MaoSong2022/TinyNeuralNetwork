@@ -22,6 +22,37 @@ public:
         }
     };
 
+    Layer(const Layer &other)
+        : _n_in(other._n_in), _n_out(other._n_out),
+          _activate_function(other._activate_function),
+          _neurons(other._neurons){};
+
+    Layer &operator=(const Layer &other)
+    {
+        _n_in = other._n_in;
+        _n_out = other._n_out;
+        _activate_function = other._activate_function;
+        _neurons = other._neurons;
+        return *this;
+    }
+
+    Layer &operator=(Layer &&other) noexcept
+    {
+        _n_in = other._n_in;
+        _n_out = other._n_out;
+        _activate_function = std::move(other._activate_function);
+        _neurons = std::move(other._neurons);
+        return *this;
+    }
+
+    Layer(Layer &&other) noexcept
+    {
+        _n_in = other._n_in;
+        _n_out = other._n_out;
+        _activate_function = std::move(other._activate_function);
+        _neurons = std::move(other._neurons);
+    }
+
     std::vector<Variable> parameters() const;
 
     const std::vector<Neuron> &neurons() const
