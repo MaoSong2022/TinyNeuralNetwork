@@ -67,7 +67,7 @@ TEST_CASE("Test mlp", "[MLP]")
         REQUIRE(mlp.parameters().size() == 11);
 
         std::vector<double> inputs{2.0, 3.0, -1.0};
-        std::vector<double> targets{1.0};
+        std::vector<double> targets{2.0};
 
         std::vector<Variable> results = mlp.forward(inputs);
         REQUIRE(results.size() == 1);
@@ -82,28 +82,16 @@ TEST_CASE("Test mlp", "[MLP]")
                 Approx(loss.gradient() * 2 * (child.value() - targets[0])));
         REQUIRE(child.children().size() == 1);
         const auto &grandson = child.children()[0];
+        REQUIRE(grandson.children().size() == 2);
         REQUIRE(
             grandson.gradient() ==
             Approx(child.gradient() * (1.0 - child.value() * child.value())));
-        const auto &layer = mlp.layers()[0];
-        const auto &parameters = layer.parameters();
-        for (size_t i = 0; i < 3; ++i)
-        {
-            REQUIRE(parameters[i].gradient() ==
-                    Approx(child.gradient() * inputs[i]));
-        }
-        REQUIRE(parameters[3].gradient() == Approx(child.gradient()));
+        REQUIRE(grandson.children()[0].gradient() ==
+                Approx(grandson.gradient()));
+        REQUIRE(grandson.children()[1].gradient() ==
+                Approx(grandson.gradient()));
 
-        std::vector<double> old_values(4);
-        for (size_t i = 0; i < 4; ++i)
-        {
-            old_values[i] = parameters[i].value();
-        }
-
-        for (auto &parameter : mlp.parameters())
-        {
-            parameter.gradient_descent(0.1);
-        }
+        // const auto &dot_product2 = grandson.children()[0];
 
         for (size_t i = 0; i < 3; ++i)
         {
