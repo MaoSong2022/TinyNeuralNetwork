@@ -14,7 +14,7 @@ TEST_CASE("Test mlp", "[MLP]")
         std::vector<double> inputs{2.0, 3.0, -1.0};
         std::vector<double> targets{1.0};
 
-        std::vector<Variable> results = mlp.forward(inputs);
+        std::vector<Variable> &results = mlp.forward(inputs);
         REQUIRE(results.size() == 1);
         Variable loss = MSELoss(results, targets);
         loss.set_gradient(1.0);
@@ -63,13 +63,15 @@ TEST_CASE("Test mlp", "[MLP]")
         MLP mlp(3, std::vector<size_t>{2, 1});
         REQUIRE(mlp.layers().size() == 2);
         REQUIRE(mlp.layers()[0].neurons().size() == 2);
+        REQUIRE(mlp.layers()[0].parameters().size() == 8);
         REQUIRE(mlp.layers()[1].neurons().size() == 1);
+        REQUIRE(mlp.layers()[1].parameters().size() == 3);
         REQUIRE(mlp.parameters().size() == 11);
 
         std::vector<double> inputs{2.0, 3.0, -1.0};
         std::vector<double> targets{2.0};
 
-        std::vector<Variable> results = mlp.forward(inputs);
+        std::vector<Variable> &results = mlp.forward(inputs);
         REQUIRE(results.size() == 1);
         Variable loss = MSELoss(results, targets);
         loss.set_gradient(1.0);
@@ -90,15 +92,24 @@ TEST_CASE("Test mlp", "[MLP]")
                 Approx(grandson.gradient()));
         REQUIRE(grandson.children()[1].gradient() ==
                 Approx(grandson.gradient()));
+        REQUIRE(grandson.children()[1].reference() ==
+                mlp.layers()[1].parameters()[2].reference());
 
-        // const auto &dot_product2 = grandson.children()[0];
-
-        for (size_t i = 0; i < 3; ++i)
+        const auto &layer1_product = grandson.children()[0];
+        REQUIRE(layer1_product.children().size() == 4);
+        for (size_t i = 0; i < 2; ++i)
         {
-            REQUIRE(parameters[i].value() ==
-                    Approx(old_values[i] - 0.1 * parameters[i].gradient()));
+            REQUIRE(layer1_product.children()[i + 2].reference() ==
+                    mlp.results()[0][i].reference());
         }
-        REQUIRE(parameters[3].value() ==
-                Approx(old_values[3] - 0.1 * parameters[3].gradient()));
+        for (size_t i = 0; i < 2; ++i)
+        {
+            REQUIRE(layer1_product.children()[i].gradient() ==
+                    Approx(layer1_product.gradient() *
+                           layer1_product.children()[i + 2].value()));
+            REQUIRE(layer1_product.children()[i + 2].gradient() ==
+                    Approx(layer1_product.gradient() *
+                           layer1_product.children()[i].value()));
+        }
     }
 }
