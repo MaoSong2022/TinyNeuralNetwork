@@ -28,6 +28,7 @@ GENERATE_LATEX          = NO
 INPUT                  =    ../src \
 INPUT                       ../include\
 INPUT                       ./intro.md
+USE_MDFILE_AS_MAINPAGE =    ./intro.md
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.c \
                          *.cc \
