@@ -10,16 +10,26 @@ private:
     size_t _n_in;
     std::vector<size_t> _n_outs;
     std::vector<Layer> _layers;
+    std::vector<Variable> _parameters;
 
 public:
     MLP(size_t n_in, std::vector<size_t> n_outs) : _n_in(n_in), _n_outs(n_outs)
     {
         _layers.reserve(n_outs.size());
         size_t n_prev = n_in;
+        size_t num_parameters = 0;
         for (size_t n_out : n_outs)
         {
-            _layers.push_back(Layer(n_prev, n_out));
-            n_prev = n_out;
+            num_parameters += n_out * (n_prev + 1);
+        }
+        _parameters.reserve(num_parameters);
+
+        for (size_t i = 0; i < n_outs.size(); i++)
+        {
+            for (size_t j = 0; j < _layers[i].parameters().size(); j++)
+            {
+                _parameters.push_back(_layers[i].parameters()[j]);
+            }
         }
     }
 
@@ -28,7 +38,16 @@ public:
         return _layers;
     }
 
-    std::vector<Variable> parameters() const;
+
+    const std::vector<Variable> &parameters() const
+    {
+        return _parameters;
+    }
+
+    std::vector<Variable> &mutable_parameters()
+    {
+        return _parameters;
+    }
 
     std::vector<Variable> forward(const std::vector<double> &inputs);
 };

@@ -11,14 +11,20 @@ private:
     size_t _n_out;
     std::string _activate_function = "tanh";
     std::vector<Neuron> _neurons;
+    std::vector<Variable> _parameters;
 
 public:
     Layer(size_t n_in, size_t n_out, std::string activate_function = "tanh")
         : _n_in(n_in), _n_out(n_out), _activate_function(activate_function)
     {
+        _parameters.reserve((n_in + 1) * n_out);
         for (size_t i = 0; i < n_out; i++)
         {
-            _neurons.push_back(Neuron(n_in, activate_function));
+            _neurons.emplace_back(n_in, _activate_function);
+            for (size_t j = 0; j < _neurons[i].parameters().size(); j++)
+            {
+                _parameters.push_back(_neurons[i].parameters()[j]);
+            }
         }
     };
 
@@ -53,7 +59,10 @@ public:
         _neurons = std::move(other._neurons);
     }
 
-    std::vector<Variable> parameters() const;
+    const std::vector<Variable> &parameters() const
+    {
+        return _parameters;
+    }
 
     const std::vector<Neuron> &neurons() const
     {

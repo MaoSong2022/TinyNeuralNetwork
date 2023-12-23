@@ -12,11 +12,13 @@ private:
     std::vector<Variable> _weights;
     Variable _bias;
     std::string _activate_function;
+    std::vector<Variable> _parameters;
 
 public:
     Neuron(size_t n_in, std::string activate_function = "tanh")
         : _weights(n_in), _activate_function(activate_function)
     {
+        _parameters.reserve(n_in + 1);
         unsigned seed = static_cast<unsigned>(
             std::chrono::system_clock::now().time_since_epoch().count());
         std::default_random_engine generator(seed);
@@ -25,8 +27,10 @@ public:
         for (size_t i = 0; i < n_in; i++)
         {
             _weights[i] = Variable(distribution(generator), 0.0, "", "weights");
+            _parameters.push_back(_weights[i]);
         }
         _bias = Variable(distribution(generator), 0, "", "bias");
+        _parameters.push_back(_bias);
     }
 
     Neuron(const Neuron &other)
@@ -97,7 +101,10 @@ public:
         return _bias;
     }
 
-    std::vector<Variable> parameters() const;
+    const std::vector<Variable> &parameters() const
+    {
+        return _parameters;
+    }
 
     Variable forward(const std::vector<double> &inputs);
     Variable forward(const std::vector<Variable> &variables);
