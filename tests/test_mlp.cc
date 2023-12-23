@@ -34,10 +34,11 @@ TEST_CASE("Test mlp", "[MLP]")
         const auto &parameters = layer.parameters();
         for (size_t i = 0; i < 3; ++i)
         {
-            REQUIRE(parameters[i].gradient() ==
+            REQUIRE(parameters[i].reference()->gradient() ==
                     Approx(grandson.gradient() * inputs[i]));
         }
-        REQUIRE(parameters[3].gradient() == Approx(grandson.gradient()));
+        REQUIRE(parameters[3].reference()->gradient() ==
+                Approx(grandson.gradient()));
 
         std::vector<double> old_values(4);
         for (size_t i = 0; i < 4; ++i)
@@ -45,17 +46,21 @@ TEST_CASE("Test mlp", "[MLP]")
             old_values[i] = mlp.parameters()[i].value();
         }
 
-        for (auto &parameter : mlp.parameters())
+        for (auto &parameter : mlp.mutable_parameters())
         {
             parameter.gradient_descent(0.1);
         }
 
         for (size_t i = 0; i < 4; ++i)
         {
-            REQUIRE(
-                mlp.parameters()[i].value() ==
-                Approx(old_values[i] - 0.1 * mlp.parameters()[i].gradient()));
+            REQUIRE(mlp.parameters()[i].reference()->value() ==
+                    Approx(old_values[i] -
+                           0.1 * mlp.parameters()[i].reference()->gradient()));
         }
+
+        std::vector<Variable> &new_results = mlp.forward(inputs);
+        Variable new_loss = MSELoss(new_results, targets);
+        REQUIRE(new_loss.value() <= Approx(loss.value()));
     }
 
     SECTION("Test two layer")
@@ -111,5 +116,39 @@ TEST_CASE("Test mlp", "[MLP]")
                     Approx(layer1_product.gradient() *
                            layer1_product.children()[i].value()));
         }
+
+        const auto &layer0_results = mlp.results()[0];
+        for (const auto &result : layer0_results)
+        {
+            REQUIRE(result.reference() == &result);
+        }
+        const auto &neuron0_result = layer0_results[0];
+        const auto &neuron1_result = layer0_results[1];
+        REQUIRE(neuron0_result.reference() == &neuron0_result);
+        REQUIRE(neuron1_result.reference() == &neuron1_result);
+        REQUIRE(neuron0_result.children().size() == 1);
+        REQUIRE(neuron1_result.children().size() == 1);
+        const auto &layer0_activated = neuron0_result.children()[0];
+        REQUIRE(layer0_activated.children().size() == 2);
+        REQUIRE(layer0_activated.children()[0].gradient() ==
+                Approx(layer0_activated.gradient()));
+        REQUIRE(layer0_activated.children()[1].gradient() ==
+                Approx(layer0_activated.gradient()));
+        const auto &layer0_product = layer0_activated.children()[0];
+        REQUIRE(layer0_product.children().size() == 3);
+        const auto &neuron0_0 = mlp.layers()[0].neurons()[0];
+        for (size_t i = 0; i < 3; ++i)
+        {
+            REQUIRE(layer0_product.children()[i].reference() ==
+                    &neuron0_0.weights()[i]);
+        }
+
+        for (auto &parameter : mlp.mutable_parameters())
+        {
+            parameter.gradient_descent(0.1);
+        }
+        std::vector<Variable> &new_results = mlp.forward(inputs);
+        Variable new_loss = MSELoss(new_results, targets);
+        REQUIRE(new_loss.value() <= Approx(loss.value()));
     }
 }
