@@ -26,6 +26,8 @@ public:
 
         for (size_t i = 0; i < n_outs.size(); i++)
         {
+            _layers.emplace_back(n_prev, n_outs[i], "tanh");
+            n_prev = n_outs[i];
             for (size_t j = 0; j < _layers[i].parameters().size(); j++)
             {
                 _parameters.push_back(_layers[i].parameters()[j]);
