@@ -203,7 +203,9 @@ Friends</h2></td></tr>
 <tr class="memitem:a9b0c2d8d2001378918c6f2707688e720"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classVariable.html">Variable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariable.html#a9b0c2d8d2001378918c6f2707688e720">dot_product</a> (const std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt; &amp;a, const std::vector&lt; double &gt; &amp;b)</td></tr>
 <tr class="separator:a9b0c2d8d2001378918c6f2707688e720"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class represents a variable in a mathematical expression. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af9342bc3ef8bdb0009bbcf2f3a71b772"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af9342bc3ef8bdb0009bbcf2f3a71b772">&#9670;&nbsp;</a></span>Variable() <span class="overload">[1/3]</span></h2>
 
@@ -249,6 +251,15 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Constructs a new <a class="el" href="classVariable.html">Variable</a> object. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The initial value of the variable. </td></tr>
+    <tr><td class="paramname">gradient</td><td>The initial gradient of the variable. </td></tr>
+    <tr><td class="paramname">op</td><td>The operation associated with the variable. </td></tr>
+    <tr><td class="paramname">name</td><td>The name of the variable. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -275,6 +286,12 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Copy constructor. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The <a class="el" href="classVariable.html">Variable</a> object to copy from. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -301,6 +318,13 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Move constructor. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The <a class="el" href="classVariable.html">Variable</a> object to move from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The reference will be set to this. </dd></dl>
 
 </div>
 </div>
@@ -326,6 +350,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Destructor. </p>
 
 </div>
 </div>
@@ -345,6 +370,13 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Activate the variable with the given activate function. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">activate_function</td><td>The name of given activate function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the activated variable. </dd></dl>
 
 </div>
 </div>
@@ -370,6 +402,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Performs the backward pass for the variable and its children. </p><dl class="section note"><dt>Note</dt><dd>The backward function is called recursively for each child. </dd></dl>
 
 </div>
 </div>
@@ -395,6 +428,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Gets the child variables of this variable. </p><dl class="section return"><dt>Returns</dt><dd>The child variables of this variable. </dd></dl>
 
 </div>
 </div>
@@ -412,6 +446,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Calculates the cosine of the variable. </p><dl class="section return"><dt>Returns</dt><dd>The cosine of the variable. </dd></dl>
 
 </div>
 </div>
@@ -429,6 +464,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Calculates the hyperbolic cosine of the variable. </p><dl class="section return"><dt>Returns</dt><dd>The hyperbolic cosine of the variable. </dd></dl>
 
 </div>
 </div>
@@ -446,6 +482,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Calculates the exponential of the variable. </p><dl class="section return"><dt>Returns</dt><dd>The exponential of the variable. </dd></dl>
 
 </div>
 </div>
@@ -471,6 +508,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Gets the gradient of the variable. </p><dl class="section return"><dt>Returns</dt><dd>The gradient of the variable. </dd></dl>
 
 </div>
 </div>
@@ -497,6 +535,13 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Performs gradient descent optimization on the variable. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lr</td><td>The learning rate. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The gradient is synchronized with the reference variable. </dd></dl>
 
 </div>
 </div>
@@ -514,6 +559,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns a copy of the variable. </p><dl class="section return"><dt>Returns</dt><dd>The copy of the variable. </dd></dl>
 
 </div>
 </div>
@@ -531,6 +577,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Calculates the natural logarithm of the variable. </p><dl class="section return"><dt>Returns</dt><dd>The natural logarithm of the variable. </dd></dl>
 
 </div>
 </div>
@@ -556,6 +603,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Gets the mutable child variables of this variable. </p><dl class="section return"><dt>Returns</dt><dd>The mutable child variables of this variable. </dd></dl>
 
 </div>
 </div>
@@ -581,6 +629,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Gets the name of the variable. </p><dl class="section return"><dt>Returns</dt><dd>The name of the variable. </dd></dl>
 
 </div>
 </div>
@@ -606,6 +655,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Gets the operation associated with the variable. </p><dl class="section return"><dt>Returns</dt><dd>The operation associated with the variable. </dd></dl>
 
 </div>
 </div>
@@ -624,6 +674,13 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Overloads the multiplication operator to perform element-wise multiplication of a variable and a scalar. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The scalar to be multiplied. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the multiplication. </dd></dl>
 
 </div>
 </div>
@@ -642,6 +699,13 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Overloads the multiplication operator to perform element-wise multiplication of two variables. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The variable to be multiplied. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the multiplication. </dd></dl>
 
 </div>
 </div>
@@ -660,6 +724,13 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Overloads the addition operator to perform element-wise addition of a variable and a scalar. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The scalar to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the addition. </dd></dl>
 
 </div>
 </div>
@@ -678,6 +749,13 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Overloads the addition operator to perform element-wise addition of two variables. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The variable to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the addition. </dd></dl>
 
 </div>
 </div>
@@ -695,6 +773,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Overloads the unary negation operator to negate the value of the variable. </p><dl class="section return"><dt>Returns</dt><dd>The negated variable. </dd></dl>
 
 </div>
 </div>
@@ -713,6 +792,13 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Overloads the subtraction operator to perform element-wise subtraction of a variable and a scalar. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The scalar to be subtracted. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the subtraction. </dd></dl>
 
 </div>
 </div>
@@ -731,6 +817,13 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Overloads the subtraction operator to perform element-wise subtraction of two variables. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The variable to be subtracted. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the subtraction. </dd></dl>
 
 </div>
 </div>
@@ -749,6 +842,13 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Overloads the division operator to perform element-wise division of a variable and a scalar. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The scalar to be divided. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the division. </dd></dl>
 
 </div>
 </div>
@@ -767,6 +867,13 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Overloads the division operator to perform element-wise division of two variables. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The variable to be divided. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the division. </dd></dl>
 
 </div>
 </div>
@@ -793,6 +900,14 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Assignment operator. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The <a class="el" href="classVariable.html">Variable</a> object to assign from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the assigned <a class="el" href="classVariable.html">Variable</a> object. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The reference will be kept. </dd></dl>
 
 </div>
 </div>
@@ -819,6 +934,14 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Move assignment operator. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The <a class="el" href="classVariable.html">Variable</a> object to move from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the moved <a class="el" href="classVariable.html">Variable</a> object. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The reference will be kept. </dd></dl>
 
 </div>
 </div>
@@ -837,6 +960,13 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Calculates the power of the variable raised to a scalar exponent. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The scalar exponent. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of raising the variable to the exponent. </dd></dl>
 
 </div>
 </div>
@@ -862,6 +992,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Gets the reference to another variable. </p><dl class="section return"><dt>Returns</dt><dd>The reference to another variable. </dd></dl>
 
 </div>
 </div>
@@ -879,6 +1010,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Calculates the rectified linear unit (ReLU) of the variable. </p><dl class="section return"><dt>Returns</dt><dd>The ReLU of the variable. </dd></dl>
 
 </div>
 </div>
@@ -905,6 +1037,12 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Sets the backward function associated with the variable. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">backward</td><td>The backward function associated with the variable. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -931,6 +1069,12 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Sets the child variables of this variable. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">children</td><td>The child variables of this variable. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -957,6 +1101,12 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Sets the gradient of the variable. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gradient</td><td>The gradient of the variable. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -983,6 +1133,12 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Sets the name of the variable. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the variable. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1009,6 +1165,12 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Sets the operation associated with the variable. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op</td><td>The operation associated with the variable. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1035,6 +1197,12 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Sets the reference to another variable. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reference</td><td>The reference to another variable. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1061,6 +1229,12 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Sets the value of the variable. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The value of the variable. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1078,6 +1252,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Calculates the sigmoid activation function of the variable. </p><dl class="section return"><dt>Returns</dt><dd>The sigmoid of the variable. </dd></dl>
 
 </div>
 </div>
@@ -1095,6 +1270,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Calculates the sine of the variable. </p><dl class="section return"><dt>Returns</dt><dd>The sine of the variable. </dd></dl>
 
 </div>
 </div>
@@ -1112,6 +1288,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Calculates the hyperbolic sine of the variable. </p><dl class="section return"><dt>Returns</dt><dd>The hyperbolic sine of the variable. </dd></dl>
 
 </div>
 </div>
@@ -1129,6 +1306,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Calculates the tangent of the variable. </p><dl class="section return"><dt>Returns</dt><dd>The tangent of the variable. </dd></dl>
 
 </div>
 </div>
@@ -1146,6 +1324,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Calculates the hyperbolic tangent of the variable. </p><dl class="section return"><dt>Returns</dt><dd>The hyperbolic tangent of the variable. </dd></dl>
 
 </div>
 </div>
@@ -1172,6 +1351,13 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Updates the gradient of the variable. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">grad</td><td>The gradient update value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The gradient is synchronized with the reference variable. </dd></dl>
 
 </div>
 </div>
@@ -1197,6 +1383,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Gets the value of the variable. </p><dl class="section return"><dt>Returns</dt><dd>The value of the variable. </dd></dl>
 
 </div>
 </div>
@@ -1222,6 +1409,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Resets the gradient of the variable to zero. </p><dl class="section note"><dt>Note</dt><dd>The gradient is synchronized with the reference variable. </dd></dl>
 
 </div>
 </div>
@@ -1259,6 +1447,14 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Calculates the dot product of a vector of variables and a vector of scalars. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>The vector of variables. </td></tr>
+    <tr><td class="paramname">b</td><td>The vector of scalars. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The dot product of the two vectors. </dd></dl>
 
 </div>
 </div>
@@ -1295,6 +1491,14 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Calculates the dot product of two vectors of variables. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>The first vector of variables. </td></tr>
+    <tr><td class="paramname">b</td><td>The second vector of variables. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The dot product of the two vectors. </dd></dl>
 
 </div>
 </div>
@@ -1331,6 +1535,14 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Overloads the multiplication operator to perform element-wise multiplication of a scalar and a variable. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The scalar to be multiplied. </td></tr>
+    <tr><td class="paramname">var</td><td>The variable to be multiplied. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the multiplication. </dd></dl>
 
 </div>
 </div>
@@ -1367,6 +1579,14 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Overloads the addition operator to perform element-wise addition of a scalar and a variable. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The scalar to be added. </td></tr>
+    <tr><td class="paramname">var</td><td>The variable to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the addition. </dd></dl>
 
 </div>
 </div>
@@ -1403,6 +1623,14 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Overloads the subtraction operator to perform element-wise subtraction of a scalar and a variable. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The scalar to be subtracted. </td></tr>
+    <tr><td class="paramname">var</td><td>The variable to be subtracted. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the subtraction. </dd></dl>
 
 </div>
 </div>
@@ -1439,6 +1667,14 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Overloads the division operator to perform element-wise division of a scalar and a variable. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The scalar to be divided. </td></tr>
+    <tr><td class="paramname">var</td><td>The variable to be divided. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the division. </dd></dl>
 
 </div>
 </div>
@@ -1475,6 +1711,14 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Overloads the stream insertion operator to print the value of the variable. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>The output stream. </td></tr>
+    <tr><td class="paramname">var</td><td>The variable to be printed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The modified output stream. </dd></dl>
 
 </div>
 </div>

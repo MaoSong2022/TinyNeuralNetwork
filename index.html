@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
-<title>C++ Tiny Neural Network: this is introduction</title>
+<title>C++ Tiny Neural Network: An C++ implemented Neural Network</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,10 +81,87 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">this is introduction </div>  </div>
+<div class="title">An C++ implemented Neural Network </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_intro"></a></p>
+<div class="textblock"><p><a class="anchor" id="md_intro"></a>This is a C++ implemented, a simple implementation of Multi-Layer Perception (<a class="el" href="classMLP.html">MLP</a>), it is enclosed so that we can use it in the same way of using Pytorch.</p>
+<p>Here is a simple example: </p><div class="fragment"><div class="line"> {c++}</div>
+<div class="line">int main()</div>
+<div class="line">{</div>
+<div class="line">    // training data</div>
+<div class="line">    std::vector&lt;double&gt; inputs = {2.0, 3.0, -1.0};</div>
+<div class="line">    std::vector&lt;double&gt; targets = {1.0};</div>
+<div class="line"> </div>
+<div class="line">    // construct mlp</div>
+<div class="line">    size_t num_inputs = inputs.size();</div>
+<div class="line">    std::vector&lt;size_t&gt; num_outputs{4, 4, 1};</div>
+<div class="line">    MLP mlp(num_inputs, num_outputs);</div>
+<div class="line"> </div>
+<div class="line">    // configure training parameters</div>
+<div class="line">    size_t iters = 20;</div>
+<div class="line">    double lr = 0.01;</div>
+<div class="line"> </div>
+<div class="line">    for (size_t iter = 0; iter &lt; iters; iter++)</div>
+<div class="line">    {</div>
+<div class="line">        // forward pass</div>
+<div class="line">        const std::vector&lt;Variable&gt; &amp;predictions = mlp.forward(inputs);</div>
+<div class="line"> </div>
+<div class="line">        // compute and record loss</div>
+<div class="line">        Variable loss = MSELoss(predictions, targets);</div>
+<div class="line">        spdlog::info(</div>
+<div class="line">            fmt::format(&quot;Iteration: {}. Loss: {}&quot;, iter, loss.value()));</div>
+<div class="line"> </div>
+<div class="line">        // zero gradient</div>
+<div class="line">        for (auto &amp;parameter : mlp.mutable_parameters())</div>
+<div class="line">        {</div>
+<div class="line">            parameter.zero_grad();</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        // set gradient in order to back propagate</div>
+<div class="line">        loss.set_gradient(1.0);</div>
+<div class="line"> </div>
+<div class="line">        // backward</div>
+<div class="line">        loss.backward();</div>
+<div class="line"> </div>
+<div class="line">        // update values</div>
+<div class="line">        for (auto &amp;parameter : mlp.mutable_parameters())</div>
+<div class="line">        {</div>
+<div class="line">            parameter.gradient_descent(lr);</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    return 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><p> for more details, see <code>app/simple_mlp.cc</code>.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Installation</h1>
+<p>To use the repository, first clone the repository: </p><div class="fragment"><div class="line">git clone https://github.com/MaoSong2022/TinyNeuralNetwork.git</div>
+</div><!-- fragment --><p> Then, go to the repository folder: </p><div class="fragment"><div class="line">cd TinyNeuralNetwork</div>
+</div><!-- fragment --><p> now, we need to build the targets: </p><div class="fragment"><div class="line">make prepare</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
+Example use</h1>
+<p>To see the output of a simple example, build and run <code>main</code>: </p><div class="fragment"><div class="line">cd build</div>
+<div class="line">cmake -DCMAKE_BUILD_TYPE=Release ..</div>
+<div class="line">cmake --build . --config Release --target main</div>
+<div class="line">cd app</div>
+<div class="line">./main</div>
+</div><!-- fragment --><p> The first time to compile may take a long time, be patient!</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Method</h1>
+<p>Since the forward process and backward process are asynchronous, it is necessary for us to remember what happened before, this project uses a special class <code><a class="el" href="classVariable.html">Variable</a></code>, which has a special member <code>_backward</code> of function type to determine the behavior of backward process. In other words, <code><a class="el" href="classVariable.html">Variable</a></code> class passes gradient related information during backward process.</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Checklists</h1>
+<p>[ ] support batch inputs. <br  />
+ [ ] support convolution neural networks. <br  />
+ [ ] support more loss functions. <br  />
+ [ ] memory use efficiency.</p>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Acknowledgement</h1>
+<ol type="1">
+<li>This project is inspired by lectures given by <a href="https://karpathy.ai/">Andrej Karpathy</a>, here is the <a href="https://www.youtube.com/watch?v=VMj-3S1tku0">video link</a>, and the corresponding <a href="https://github.com/karpathy/micrograd">Github Repository</a>.</li>
+<li>This project uses the template provided by <a href="https://github.com/franneck94/CppProjectTemplate">CppProjectTemplate</a>.</li>
+<li>The documentation is generated with the help of <a href="https://www.doxygen.nl/index.html">Doxygen</a>. </li>
+</ol>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

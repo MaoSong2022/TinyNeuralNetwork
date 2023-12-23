@@ -115,7 +115,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9dcd8d68892b2b882ef93652195189fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classVariable.html">Variable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNeuron.html#a9dcd8d68892b2b882ef93652195189fe">forward</a> (const std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt; &amp;variables)</td></tr>
 <tr class="separator:a9dcd8d68892b2b882ef93652195189fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class represents a neuron in a neural network. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a035519579d2c02e7f11cdb04e5676a53"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a035519579d2c02e7f11cdb04e5676a53">&#9670;&nbsp;</a></span>Neuron() <span class="overload">[1/3]</span></h2>
 
@@ -149,6 +151,13 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Constructs a neuron with the specified number of input connections and activation function. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n_in</td><td>The number of input connections. </td></tr>
+    <tr><td class="paramname">activate_function</td><td>The activation function of the neuron. Default is "tanh". </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -175,6 +184,12 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Copy constructor. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The neuron to be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -201,6 +216,12 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Move constructor. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The neuron to be moved. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -226,6 +247,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Destructor. </p>
 
 </div>
 </div>
@@ -252,6 +274,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Returns the bias of the neuron. </p><dl class="section return"><dt>Returns</dt><dd>The bias. </dd></dl>
 
 </div>
 </div>
@@ -270,6 +293,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Computes the forward pass of the neuron given a vector of input values. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inputs</td><td>The input values. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The output value of the neuron. </dd></dl>
 
 </div>
 </div>
@@ -288,6 +318,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Computes the forward pass of the neuron given a vector of input variables. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">variables</td><td>The input variables. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The output value of the neuron. </dd></dl>
 
 </div>
 </div>
@@ -314,6 +351,13 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Copy assignment operator. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The neuron to be assigned. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the assigned neuron. </dd></dl>
 
 </div>
 </div>
@@ -340,6 +384,13 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Move assignment operator. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The neuron to be assigned. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the assigned neuron. </dd></dl>
 
 </div>
 </div>
@@ -365,6 +416,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Returns all parameters of the neuron, including weights and bias. </p><dl class="section return"><dt>Returns</dt><dd>The parameters. </dd></dl>
 
 </div>
 </div>
@@ -390,6 +442,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Returns the weights of the neuron. </p><dl class="section return"><dt>Returns</dt><dd>The weights. </dd></dl>
 
 </div>
 </div>

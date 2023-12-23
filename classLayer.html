@@ -111,7 +111,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a58095a94b21f20ef4a2f73d63408ded3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#a58095a94b21f20ef4a2f73d63408ded3">forward</a> (const std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt; &amp;variables)</td></tr>
 <tr class="separator:a58095a94b21f20ef4a2f73d63408ded3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class represents a layer in a neural network, consisting of multiple neurons. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac2ae60474f7473c43607935ebd681e89"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac2ae60474f7473c43607935ebd681e89">&#9670;&nbsp;</a></span>Layer() <span class="overload">[1/3]</span></h2>
 
@@ -151,6 +153,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Constructs a layer with the specified number of input and output connections, and activation function. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n_in</td><td>The number of input connections. </td></tr>
+    <tr><td class="paramname">n_out</td><td>The number of output connections. </td></tr>
+    <tr><td class="paramname">activate_function</td><td>The activation function of the layer. Default is "tanh". </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -177,6 +187,12 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Copy constructor. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The layer to be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -203,6 +219,13 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Move assignment operator. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The layer to be assigned. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the assigned layer. </dd></dl>
 
 </div>
 </div>
@@ -222,6 +245,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Computes the forward pass of the layer given a vector of input values. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inputs</td><td>The input values. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The output values of the layer as a vector of Variables. </dd></dl>
 
 </div>
 </div>
@@ -240,6 +270,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Computes the forward pass of the layer given a vector of input variables. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">variables</td><td>The input variables. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The output values of the layer as a vector of Variables. </dd></dl>
 
 </div>
 </div>
@@ -265,6 +302,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Returns the neurons in the layer. </p><dl class="section return"><dt>Returns</dt><dd>The neurons. </dd></dl>
 
 </div>
 </div>
@@ -291,6 +329,13 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Copy assignment operator. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The layer to be assigned. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the assigned layer. </dd></dl>
 
 </div>
 </div>
@@ -317,6 +362,12 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Move constructor. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The layer to be moved. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -342,6 +393,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Returns all parameters of the layer, including parameters of all neurons. </p><dl class="section return"><dt>Returns</dt><dd>The parameters. </dd></dl>
 
 </div>
 </div>

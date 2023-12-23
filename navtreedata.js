@@ -25,7 +25,13 @@
 var NAVTREE =
 [
   [ "C++ Tiny Neural Network", "index.html", [
-    [ "this is introduction", "index.html", null ],
+    [ "An C++ implemented Neural Network", "index.html", [
+      [ "Installation", "index.html#autotoc_md1", null ],
+      [ "Example use", "index.html#autotoc_md2", null ],
+      [ "Method", "index.html#autotoc_md3", null ],
+      [ "Checklists", "index.html#autotoc_md4", null ],
+      [ "Acknowledgement", "index.html#autotoc_md5", null ]
+    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
