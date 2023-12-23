@@ -1,60 +1,57 @@
-# Template For C++ Projects
+# An C++ implemented Neural Network
+This is a C++ implemented, a simple implementation of Multi-Layer Perception (MLP), it is enclosed so that we can use it in the same way of using Pytorch.
 
-![C++](https://img.shields.io/badge/C%2B%2B-11%2F14%2F17%2F20%2F23-blue)
-![License](https://camo.githubusercontent.com/890acbdcb87868b382af9a4b1fac507b9659d9bf/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d4d49542d626c75652e737667)
-![Linux Build](https://github.com/franneck94/CppProjectTemplate/workflows/Ubuntu%20CI%20Test/badge.svg)
-[![codecov](https://codecov.io/gh/franneck94/CppProjectTemplate/branch/master/graph/badge.svg)](https://codecov.io/gh/franneck94/CppProjectTemplate)
-
-This is a template for C++ projects. What you get:
-
-- Library, executable and test code separated in distinct folders
-- Use of modern CMake for building and compiling
-- External libraries installed and managed by
-  - [CPM](https://github.com/cpm-cmake/CPM.cmake) Package Manager OR
-  - [Conan](https://conan.io/) Package Manager OR
-  - [VCPKG](https://github.com/microsoft/vcpkg) Package Manager
-- Unit testing using [Catch2](https://github.com/catchorg/Catch2) v2
-- General purpose libraries: [JSON](https://github.com/nlohmann/json), [spdlog](https://github.com/gabime/spdlog), [cxxopts](https://github.com/jarro2783/cxxopts) and [fmt](https://github.com/fmtlib/fmt)
-- Continuous integration testing with Github Actions and [pre-commit](https://pre-commit.com/)
-- Code coverage reports, including automatic upload to [Codecov](https://codecov.io)
-- Code documentation with [Doxygen](https://doxygen.nl/) and [Github Pages](https://franneck94.github.io/CppProjectTemplate/)
-- Tooling: Clang-Format, Cmake-Format, Clang-tidy, Sanitizers
-
-## Structure
-
-``` text
-├── CMakeLists.txt
-├── app
-│   ├── CMakesLists.txt
-│   └── main.cc
-├── cmake
-│   └── cmake modules
-├── docs
-│   ├── Doxyfile
-│   └── html/
-├── external
-│   ├── CMakesLists.txt
-│   ├── ...
-├── src
-│   ├── CMakesLists.txt
-│   ├── my_lib.h
-│   └── my_lib.cc
-└── tests
-    ├── CMakeLists.txt
-    └── main.cc
+Here is a simple example:
 ```
+int main()
+{
+    // training data
+    std::vector<double> inputs = {2.0, 3.0, -1.0};
+    std::vector<double> targets = {1.0};
 
-Library code goes into [src/](src/), main program code in [app/](app) and tests go in [tests/](tests/).
+    // construct mlp
+    size_t num_inputs = inputs.size();
+    std::vector<size_t> num_outputs{4, 4, 1};
+    MLP mlp(num_inputs, num_outputs);
 
-## Software Requirements
+    // configure training parameters
+    size_t iters = 20;
+    double lr = 0.01;
 
-- CMake 3.21+
-- GNU Makefile
-- Doxygen
-- Conan or VCPKG
-- MSVC 2017 (or higher), G++9 (or higher), Clang++9 (or higher)
-- Optional: Code Coverage (only on GNU|Clang): lcov, gcovr
-- Optional: Makefile, Doxygen, Conan, VCPKG
+    for (size_t iter = 0; iter < iters; iter++)
+    {
+        // forward pass
+        const std::vector<Variable> &predictions = mlp.forward(inputs);
+
+        // compute and record loss
+        Variable loss = MSELoss(predictions, targets);
+        spdlog::info(
+            fmt::format("Iteration: {}. Loss: {}", iter, loss.value()));
+
+        // zero gradient
+        for (auto &parameter : mlp.mutable_parameters())
+        {
+            parameter.zero_grad();
+        }
+
+        // set gradient in order to back propagate
+        loss.set_gradient(1.0);
+
+        // backward
+        loss.backward();
+
+        // update values
+        for (auto &parameter : mlp.mutable_parameters())
+        {
+            parameter.gradient_descent(lr);
+        }
+    }
+
+    return 0;
+}
+```
+for more details, see `app/simple_mlp.cc`.
+
 
 ## Building
 
@@ -102,3 +99,63 @@ cmake --build . --config Debug --target coverage
 ```
 
 For more info about CMake see [here](./README_cmake.md).
+The first time to compile may take a long time, be patient!
+
+# Method
+Since the forward process and backward process are asynchronous, it is necessary for us to remember what happened before, this project uses a special class `Variable`, which has a special member `_backward` of function type to determine the behavior of backward process. In other words, `Variable` class passes gradient related information during backward process.
+
+Then, `Neuron`, `Layer`, `MLP` are built step by step, of which `_weights` and `_bias` are the cores, which we use a special field of `Variable` called `ref` to ensure they are correctly updated.
+
+
+
+# Checklists
+[ ] support batch inputs.  
+[ ] support convolution neural networks.   
+[ ] support more loss functions.  
+[ ] memory use efficiency.
+
+
+
+
+## Structure
+``` text
+├── CMakeLists.txt
+├── app
+│   ├── CMakesLists.txt
+│   └── main.cc
+├── cmake
+│   └── cmake modules
+├── docs
+│   ├── Doxyfile
+│   └── html/
+├── external
+│   ├── CMakesLists.txt
+│   ├── ...
+├── src
+│   ├── CMakesLists.txt
+│   ├── my_lib.h
+│   └── my_lib.cc
+└── tests
+    ├── CMakeLists.txt
+    └── main.cc
+```
+
+Library code goes into [src/](src/), main program code in [app/](app) and tests go in [tests/](tests/).
+
+## Software Requirements
+
+- CMake 3.21+
+- GNU Makefile
+- Doxygen
+- Conan or VCPKG
+- MSVC 2017 (or higher), G++9 (or higher), Clang++9 (or higher)
+- Optional: Code Coverage (only on GNU|Clang): lcov, gcovr
+- Optional: Makefile, Doxygen, Conan, VCPKG
+
+
+
+
+# Acknowledgement
+1. This project is inspired by lectures given by [Andrej Karpathy](https://karpathy.ai/),  here is the [video link](https://www.youtube.com/watch?v=VMj-3S1tku0), and the corresponding [Github Repository](https://github.com/karpathy/micrograd).
+2. This project uses the template provided by [CppProjectTemplate](https://github.com/franneck94/CppProjectTemplate).
+3. The documentation is generated with the help of [Doxygen](https://www.doxygen.nl/index.html).
