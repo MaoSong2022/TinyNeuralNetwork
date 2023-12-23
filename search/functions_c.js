@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['parameters_101',['parameters',['../classLayer.html#a5f217477960cd1f8d82a17b680107da3',1,'Layer::parameters()'],['../classMLP.html#a76e39392a67160708ce48ffc53a21b17',1,'MLP::parameters()'],['../classNeuron.html#a90089f6c539621c35e4b0029b3e487c1',1,'Neuron::parameters()']]],
-  ['pow_102',['pow',['../classVariable.html#acb4663736e14f9668606a13bc8354002',1,'Variable']]]
+  ['parameters_112',['parameters',['../classLayer.html#a62ab9c2de84af7915f8bcc0dbb63f3c0',1,'Layer::parameters()'],['../classMLP.html#a986e0ef52e1db25c8a0c9532de0fd379',1,'MLP::parameters()'],['../classNeuron.html#aefe87ea55b73a3ae5833f24ea4e3d118',1,'Neuron::parameters()']]],
+  ['pow_113',['pow',['../classVariable.html#acb4663736e14f9668606a13bc8354002',1,'Variable']]]
 ];

@@ -94,10 +94,16 @@ $(document).ready(function(){initNavTree('classMLP.html',''); initResizable(); }
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae81225074bcbfbfdd30ca09e035a2d3e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMLP.html#ae81225074bcbfbfdd30ca09e035a2d3e">MLP</a> (size_t n_in, std::vector&lt; size_t &gt; n_outs)</td></tr>
 <tr class="separator:ae81225074bcbfbfdd30ca09e035a2d3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76e39392a67160708ce48ffc53a21b17"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMLP.html#a76e39392a67160708ce48ffc53a21b17">parameters</a> () const</td></tr>
-<tr class="separator:a76e39392a67160708ce48ffc53a21b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a849439b55337c7b7f12a4a672a41b132"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMLP.html#a849439b55337c7b7f12a4a672a41b132">forward</a> (const std::vector&lt; double &gt; &amp;inputs)</td></tr>
-<tr class="separator:a849439b55337c7b7f12a4a672a41b132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a936b92315033b89319f4e09a9787990a"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classLayer.html">Layer</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMLP.html#a936b92315033b89319f4e09a9787990a">layers</a> () const</td></tr>
+<tr class="separator:a936b92315033b89319f4e09a9787990a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04cd261922970702c01a0d54ce2b0bcc"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMLP.html#a04cd261922970702c01a0d54ce2b0bcc">results</a> () const</td></tr>
+<tr class="separator:a04cd261922970702c01a0d54ce2b0bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a986e0ef52e1db25c8a0c9532de0fd379"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMLP.html#a986e0ef52e1db25c8a0c9532de0fd379">parameters</a> () const</td></tr>
+<tr class="separator:a986e0ef52e1db25c8a0c9532de0fd379"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44e1dcec0418a793d3a487e87499294a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMLP.html#a44e1dcec0418a793d3a487e87499294a">mutable_parameters</a> ()</td></tr>
+<tr class="separator:a44e1dcec0418a793d3a487e87499294a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a808adee7cc79504dc1505e6bd71a865d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMLP.html#a808adee7cc79504dc1505e6bd71a865d">forward</a> (const std::vector&lt; double &gt; &amp;inputs)</td></tr>
+<tr class="separator:a808adee7cc79504dc1505e6bd71a865d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae81225074bcbfbfdd30ca09e035a2d3e"></a>
@@ -137,14 +143,14 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a849439b55337c7b7f12a4a672a41b132"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a849439b55337c7b7f12a4a672a41b132">&#9670;&nbsp;</a></span>forward()</h2>
+<a id="a808adee7cc79504dc1505e6bd71a865d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a808adee7cc79504dc1505e6bd71a865d">&#9670;&nbsp;</a></span>forward()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt; MLP::forward </td>
+          <td class="memname">std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt; &amp; MLP::forward </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
           <td class="paramname"><em>inputs</em></td><td>)</td>
@@ -155,19 +161,102 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a76e39392a67160708ce48ffc53a21b17"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76e39392a67160708ce48ffc53a21b17">&#9670;&nbsp;</a></span>parameters()</h2>
+<a id="a936b92315033b89319f4e09a9787990a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a936b92315033b89319f4e09a9787990a">&#9670;&nbsp;</a></span>layers()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt; MLP::parameters </td>
+          <td class="memname">const std::vector&lt;<a class="el" href="classLayer.html">Layer</a>&gt;&amp; MLP::layers </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a44e1dcec0418a793d3a487e87499294a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44e1dcec0418a793d3a487e87499294a">&#9670;&nbsp;</a></span>mutable_parameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classVariable.html">Variable</a>&gt;&amp; MLP::mutable_parameters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a986e0ef52e1db25c8a0c9532de0fd379"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a986e0ef52e1db25c8a0c9532de0fd379">&#9670;&nbsp;</a></span>parameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt;<a class="el" href="classVariable.html">Variable</a>&gt;&amp; MLP::parameters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a04cd261922970702c01a0d54ce2b0bcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04cd261922970702c01a0d54ce2b0bcc">&#9670;&nbsp;</a></span>results()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt;std::vector&lt;<a class="el" href="classVariable.html">Variable</a>&gt; &gt;&amp; MLP::results </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

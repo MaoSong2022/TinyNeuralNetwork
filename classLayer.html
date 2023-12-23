@@ -94,8 +94,18 @@ $(document).ready(function(){initNavTree('classLayer.html',''); initResizable();
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac2ae60474f7473c43607935ebd681e89"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#ac2ae60474f7473c43607935ebd681e89">Layer</a> (size_t n_in, size_t n_out, std::string activate_function=&quot;tanh&quot;)</td></tr>
 <tr class="separator:ac2ae60474f7473c43607935ebd681e89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f217477960cd1f8d82a17b680107da3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#a5f217477960cd1f8d82a17b680107da3">parameters</a> () const</td></tr>
-<tr class="separator:a5f217477960cd1f8d82a17b680107da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e1c7959b5be4fc77c65c19caeb09c28"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#a9e1c7959b5be4fc77c65c19caeb09c28">Layer</a> (const <a class="el" href="classLayer.html">Layer</a> &amp;other)</td></tr>
+<tr class="separator:a9e1c7959b5be4fc77c65c19caeb09c28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a006b3a26c39da11f4bc9719c160ea22b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classLayer.html">Layer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#a006b3a26c39da11f4bc9719c160ea22b">operator=</a> (const <a class="el" href="classLayer.html">Layer</a> &amp;other)</td></tr>
+<tr class="separator:a006b3a26c39da11f4bc9719c160ea22b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaa778633feceda31a2772890c0db226"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classLayer.html">Layer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#acaa778633feceda31a2772890c0db226">operator=</a> (<a class="el" href="classLayer.html">Layer</a> &amp;&amp;other) noexcept</td></tr>
+<tr class="separator:acaa778633feceda31a2772890c0db226"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaadd2181c5cf3432b09faffbc6ca7f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#aaaadd2181c5cf3432b09faffbc6ca7f6">Layer</a> (<a class="el" href="classLayer.html">Layer</a> &amp;&amp;other) noexcept</td></tr>
+<tr class="separator:aaaadd2181c5cf3432b09faffbc6ca7f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62ab9c2de84af7915f8bcc0dbb63f3c0"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#a62ab9c2de84af7915f8bcc0dbb63f3c0">parameters</a> () const</td></tr>
+<tr class="separator:a62ab9c2de84af7915f8bcc0dbb63f3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f2a2ae84e697142836cec2d2b6062d8"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classNeuron.html">Neuron</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#a2f2a2ae84e697142836cec2d2b6062d8">neurons</a> () const</td></tr>
+<tr class="separator:a2f2a2ae84e697142836cec2d2b6062d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59dd3efd931342e3eca2062a3b54708c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#a59dd3efd931342e3eca2062a3b54708c">forward</a> (const std::vector&lt; double &gt; &amp;inputs)</td></tr>
 <tr class="separator:a59dd3efd931342e3eca2062a3b54708c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58095a94b21f20ef4a2f73d63408ded3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#a58095a94b21f20ef4a2f73d63408ded3">forward</a> (const std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt; &amp;variables)</td></tr>
@@ -103,7 +113,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac2ae60474f7473c43607935ebd681e89"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2ae60474f7473c43607935ebd681e89">&#9670;&nbsp;</a></span>Layer()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2ae60474f7473c43607935ebd681e89">&#9670;&nbsp;</a></span>Layer() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -138,6 +148,58 @@ Public Member Functions</h2></td></tr>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9e1c7959b5be4fc77c65c19caeb09c28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e1c7959b5be4fc77c65c19caeb09c28">&#9670;&nbsp;</a></span>Layer() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Layer::Layer </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classLayer.html">Layer</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaaadd2181c5cf3432b09faffbc6ca7f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaaadd2181c5cf3432b09faffbc6ca7f6">&#9670;&nbsp;</a></span>Layer() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Layer::Layer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classLayer.html">Layer</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -181,19 +243,104 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5f217477960cd1f8d82a17b680107da3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f217477960cd1f8d82a17b680107da3">&#9670;&nbsp;</a></span>parameters()</h2>
+<a id="a2f2a2ae84e697142836cec2d2b6062d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f2a2ae84e697142836cec2d2b6062d8">&#9670;&nbsp;</a></span>neurons()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="classVariable.html">Variable</a> &gt; Layer::parameters </td>
+          <td class="memname">const std::vector&lt;<a class="el" href="classNeuron.html">Neuron</a>&gt;&amp; Layer::neurons </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a006b3a26c39da11f4bc9719c160ea22b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a006b3a26c39da11f4bc9719c160ea22b">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classLayer.html">Layer</a>&amp; Layer::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classLayer.html">Layer</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acaa778633feceda31a2772890c0db226"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaa778633feceda31a2772890c0db226">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classLayer.html">Layer</a>&amp; Layer::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classLayer.html">Layer</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a62ab9c2de84af7915f8bcc0dbb63f3c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62ab9c2de84af7915f8bcc0dbb63f3c0">&#9670;&nbsp;</a></span>parameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt;<a class="el" href="classVariable.html">Variable</a>&gt;&amp; Layer::parameters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
