@@ -18,7 +18,7 @@ namespace fs = std::filesystem;
 
 int main()
 {
-    // traning data
+    // training data
     std::vector<double> inputs = {2.0, 3.0, -1.0};
     std::vector<double> targets = {1.0};
 
