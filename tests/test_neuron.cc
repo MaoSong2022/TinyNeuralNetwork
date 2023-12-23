@@ -29,20 +29,30 @@ TEST_CASE("Test neuron", "[Neuron]")
         REQUIRE(child.gradient() ==
                 Approx(1.0 - result.value() * result.value()));
         const std::vector<Variable> &parameters = neuron.parameters();
+        const std::vector<Variable> &weights = neuron.weights();
+        const Variable &bias = neuron.bias();
         REQUIRE(parameters.size() == n_in + 1);
+        REQUIRE(weights.size() == n_in);
         for (size_t i = 0; i < n_in; i++)
         {
-            REQUIRE(parameters[i].gradient() ==
+            REQUIRE(parameters[i].reference() == &weights[i]);
+        }
+        REQUIRE(parameters[n_in].reference() == &bias);
+
+        for (size_t i = 0; i < n_in; i++)
+        {
+            REQUIRE(parameters[i].reference()->gradient() ==
                     Approx(child.gradient() * input[i]));
         }
         REQUIRE(neuron.bias().gradient() == Approx(child.gradient()));
 
         for (std::vector<double>::size_type i = 0; i < n_in; i++)
         {
-            REQUIRE(parameters[i].gradient() ==
+            REQUIRE(parameters[i].reference()->gradient() ==
                     Approx(child.gradient() * input[i]));
         }
-        REQUIRE(parameters[n_in].gradient() == Approx(child.gradient()));
+        REQUIRE(parameters[n_in].reference()->gradient() ==
+                Approx(child.gradient()));
     }
 
     SECTION("test variable")
@@ -87,11 +97,12 @@ TEST_CASE("Test neuron", "[Neuron]")
         // gradient check
         for (size_t i = 0; i < n_in; i++)
         {
-            REQUIRE(parameters[i].gradient() ==
+            REQUIRE(parameters[i].reference()->gradient() ==
                     Approx(child.gradient() * input[i].value()));
             REQUIRE(input[i].gradient() ==
                     Approx(child.gradient() * parameters[i].value()));
         }
-        REQUIRE(parameters[n_in].gradient() == Approx(child.gradient()));
+        REQUIRE(parameters[n_in].reference()->gradient() ==
+                Approx(child.gradient()));
     }
 }

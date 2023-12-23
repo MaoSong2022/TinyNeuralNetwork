@@ -10,7 +10,7 @@ TEST_CASE("Test layer", "[Layer]")
         REQUIRE(layer.neurons()[0].parameters().size() == 4);
         REQUIRE(layer.parameters().size() == 4);
 
-        std::vector<double> inputs{1.0, 2.0, 3.0};
+        std::vector<double> inputs{1.0, -2.0, 3.0};
         std::vector<Variable> results = layer.forward(inputs);
         REQUIRE(results.size() == 1);
         auto &result = results[0];
@@ -23,13 +23,34 @@ TEST_CASE("Test layer", "[Layer]")
         REQUIRE(child.children().size() == 2);
         REQUIRE(child.gradient() ==
                 Approx(1.0 - result.value() * result.value()));
-        REQUIRE(layer.parameters()[0].gradient() ==
-                Approx(child.gradient() * inputs[0]));
-        REQUIRE(layer.parameters()[1].gradient() ==
-                Approx(child.gradient() * inputs[1]));
-        REQUIRE(layer.parameters()[2].gradient() ==
-                Approx(child.gradient() * inputs[2]));
-        REQUIRE(layer.parameters()[3].gradient() == Approx(child.gradient()));
+
+        const auto &parameters = layer.parameters();
+        const auto &neuron = layer.neurons()[0];
+        REQUIRE(child.children()[1].reference() == &neuron.bias());
+        REQUIRE(neuron.bias().gradient() == Approx(child.gradient()));
+        const auto &product = child.children()[0];
+        REQUIRE(product.gradient() == Approx(child.gradient()));
+        for (size_t i = 0; i < 4; ++i)
+        {
+            REQUIRE(parameters[i].reference() ==
+                    neuron.parameters()[i].reference());
+        }
+        for (size_t i = 0; i < 3; ++i)
+        {
+            REQUIRE(parameters[i].reference() == &neuron.weights()[i]);
+        }
+        REQUIRE(parameters[3].reference() == &neuron.bias());
+        REQUIRE(product.children().size() == 3);
+        for (size_t i = 0; i < 3; ++i)
+        {
+            REQUIRE(product.children()[i].reference() == &neuron.weights()[i]);
+        }
+
+        for (size_t i = 0; i < 3; ++i)
+        {
+            REQUIRE(neuron.weights()[i].gradient() ==
+                    Approx(product.gradient() * inputs[i]));
+        }
     }
 
     SECTION("Test variable inputs")
@@ -57,19 +78,34 @@ TEST_CASE("Test layer", "[Layer]")
         REQUIRE(child.children().size() == 2);
         REQUIRE(child.gradient() ==
                 Approx(1.0 - result.value() * result.value()));
-        REQUIRE(layer.parameters()[0].gradient() ==
-                Approx(child.gradient() * inputs[0].value()));
-        REQUIRE(layer.parameters()[1].gradient() ==
-                Approx(child.gradient() * inputs[1].value()));
-        REQUIRE(layer.parameters()[2].gradient() ==
-                Approx(child.gradient() * inputs[2].value()));
-        REQUIRE(layer.parameters()[3].gradient() == Approx(child.gradient()));
 
-        // input gradient check
+        const auto &parameters = layer.parameters();
+        const auto &neuron = layer.neurons()[0];
+        REQUIRE(child.children()[1].reference() == &neuron.bias());
+        REQUIRE(neuron.bias().gradient() == Approx(child.gradient()));
+        const auto &product = child.children()[0];
+        REQUIRE(product.gradient() == Approx(child.gradient()));
+        for (size_t i = 0; i < 4; ++i)
+        {
+            REQUIRE(parameters[i].reference() ==
+                    neuron.parameters()[i].reference());
+        }
         for (size_t i = 0; i < 3; ++i)
         {
-            REQUIRE(inputs[i].gradient() ==
-                    Approx(child.gradient() * layer.parameters()[i].value()));
+            REQUIRE(parameters[i].reference() == &neuron.weights()[i]);
+        }
+        REQUIRE(parameters[3].reference() == &neuron.bias());
+        REQUIRE(product.children().size() == 6);
+        for (size_t i = 0; i < 3; ++i)
+        {
+            REQUIRE(product.children()[i].reference() == &neuron.weights()[i]);
+            REQUIRE(product.children()[i + 3].reference() == &inputs[i]);
+        }
+
+        for (size_t i = 0; i < 3; ++i)
+        {
+            REQUIRE(neuron.weights()[i].gradient() ==
+                    Approx(product.gradient() * inputs[i].value()));
         }
     }
 }
