@@ -158,11 +158,19 @@ public:
     void zero_grad()
     {
         _gradient = 0;
+        if (this != ref && ref != nullptr)
+        {
+            ref->zero_grad();
+        }
     }
 
     void gradient_descent(double lr)
     {
         _value -= lr * _gradient;
+        if (this != ref && ref != nullptr)
+        {
+            ref->gradient_descent(lr);
+        }
     }
 
     Variable activate(std::string activate_function);
