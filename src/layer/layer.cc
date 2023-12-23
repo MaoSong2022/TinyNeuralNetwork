@@ -3,10 +3,10 @@
 
 std::vector<Variable> Layer::forward(const std::vector<double> &inputs)
 {
-    std::vector<Variable> result;
-    for (auto &neuron : _neurons)
+    std::vector<Variable> result(_n_out);
+    for (size_t i = 0; i < _n_out; ++i)
     {
-        result.push_back(neuron.forward(inputs));
+        result[i] = _neurons[i].forward(inputs);
     }
     return result;
 }
@@ -14,10 +14,10 @@ std::vector<Variable> Layer::forward(const std::vector<double> &inputs)
 
 std::vector<Variable> Layer::forward(const std::vector<Variable> &variables)
 {
-    std::vector<Variable> result;
-    for (auto &neuron : _neurons)
+    std::vector<Variable> result(_n_out);
+    for (size_t i = 0; i < _n_out; ++i)
     {
-        result.push_back(neuron.forward(variables));
+        result[i] = _neurons[i].forward(variables);
     }
     return result;
 }
