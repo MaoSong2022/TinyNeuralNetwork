@@ -18,6 +18,7 @@ public:
         : _n_in(n_in), _n_out(n_out), _activate_function(activate_function)
     {
         _parameters.reserve((n_in + 1) * n_out);
+        _neurons.reserve(n_out);
         for (size_t i = 0; i < n_out; i++)
         {
             _neurons.emplace_back(n_in, _activate_function);
