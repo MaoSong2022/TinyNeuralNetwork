@@ -3,10 +3,11 @@
 
 std::vector<Variable> &MLP::forward(const std::vector<double> &inputs)
 {
-    std::vector<Variable> result = _layers[0].forward(inputs);
+    _results[0] = _layers[0].forward(inputs);
     for (size_t i = 1; i < _layers.size(); i++)
     {
-        result = _layers[i].forward(result);
+        _results[i] = _layers[i].forward(_results[i - 1]);
     }
-    return result;
+
+    return _results.back();
 }
